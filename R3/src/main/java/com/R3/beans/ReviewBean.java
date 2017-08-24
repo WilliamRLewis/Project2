@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,9 +22,11 @@ public class ReviewBean {
 	@Column(name="REVIEW_RATING")
 	private int rating;
 	@Column(name="REVIEW_DESCRIPTION")
+	@OneToMany(mappedBy="ReviewBean")
 	private String description;
 	@Column(name="RESTAURANT_ID")
-	private int storeId;
+	@OneToMany(mappedBy="ReviewBean")
+	private int restaurantId;
 	@Column(name="USER_ID")
 	private int userId;
 
