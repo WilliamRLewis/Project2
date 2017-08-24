@@ -18,41 +18,34 @@ public class ImpReviewDAO implements ReviewDAO {
 		this.sessionFactory = sessionFactory;
 	}
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	@Override
 	public void create(ReviewBean review) {
 		sessionFactory.getCurrentSession().save(review);
 
 	}
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	@Override
 	public void update(ReviewBean review) {
 		sessionFactory.getCurrentSession().update(review);
 
 	}
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	@Override
 	public void delete(ReviewBean review) {
 		sessionFactory.getCurrentSession().delete(review);
 
 	}
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	@Override
 	public ReviewBean find(ReviewBean review) {
 		throw new UnsupportedOperationException(); 
 	}
 
-	@Override
 	public List<ReviewBean> findOnRestaurant(RestaurantBean restaurant) {
 		throw new UnsupportedOperationException(); 
 	}
 
-	@Override
 	public List<ReviewBean> findOnUser(UserBean user) {
 		throw new UnsupportedOperationException(); 
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<ReviewBean> findAll() {
 		return sessionFactory.getCurrentSession().createCriteria(ReviewBean.class).list();
 	}
