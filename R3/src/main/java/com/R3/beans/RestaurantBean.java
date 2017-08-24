@@ -1,5 +1,7 @@
 package com.R3.beans;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,11 +28,11 @@ public class RestaurantBean {
 	@Column(name="ADDRESS_ID")
 	private int addressId;
 	@Column(name="RESTAURANT_HOURS")
-	private ? restaurantHours;
+	private String restaurantHours; //Later will be OperatingWeek
 	@Column(name="RESTAURANT_PHONE_NUMBER")
 	private int phoneNumber;
 	@Column(name="RESTAURANT_DATE_ESTABLISHED")
-	private? foundingDate
+	private LocalDate foundingDate;
 	@ManyToOne
 	@Column(name="RESTAURANT_DESCRIPTION")
 	private String description;
