@@ -19,23 +19,39 @@ public class UserDAO {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	@Transactional(isolation = Isolation.READ_COMMITTED,
+					propagation = Propagation.REQUIRED,
+					rollbackFor = Exception.class)
 	public void create(UserBean user){
 		sessionFactory.getCurrentSession().save(user);
 	}
-	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	
+	@Transactional(isolation = Isolation.READ_COMMITTED,
+			propagation = Propagation.REQUIRED,
+			rollbackFor = Exception.class)
+	
 	public void delete(UserBean user){
 		sessionFactory.getCurrentSession().delete(user);
 	}
-	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	
+	@Transactional(isolation = Isolation.READ_COMMITTED,
+			propagation = Propagation.REQUIRED,
+			rollbackFor = Exception.class)
 	public void update(UserBean user){
-		sessionFactory.getCurrentSession().update(user);
+		sessionFactory.getCurrentSession().save(user);
 	}
-	@SuppressWarnings("unchecked")
+	
+	@Transactional(isolation = Isolation.READ_COMMITTED,
+			propagation = Propagation.REQUIRED,
+			rollbackFor = Exception.class)
+	public void findOneByUsername(UserBean user){
+		sessionFactory.getCurrentSession().createQuery("FROM R3_USER");
+	}
+	
+	@Transactional(isolation = Isolation.READ_COMMITTED,
+			propagation = Propagation.REQUIRED,
+			rollbackFor = Exception.class)
 	public List<UserBean> findAllUsers(){
-		return sessionFactory.getCurrentSession().createCriteria(UserBean.class).list();
-	}
-	public void findOne(UserBean user){
-		throw new UnexpectedTypeException();
+			return sessionFactory.getCurrentSession().createQuery("FROM R3_USER");
 	}
 }
