@@ -31,8 +31,6 @@ public class ReviewBean {
 	@Column(name="USER_ID")
 	private int userId;
 	
-	
-	
 	public ReviewBean(){
 		super();
 	}

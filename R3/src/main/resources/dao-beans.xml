@@ -12,7 +12,9 @@
 	<!-- 1. DataSource -->
 	<bean name="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-		<property name="url" value="#{systemEnvironment['DB_URL']}"/>
+		<property name="url" value="jdbc:oracle:thin:@revature-testing-will.cdgijuypah2d.us-east-1.rds.amazonaws.com:1521:ORCL"/>
+		<!--  #{systemEnvironment['DB_URL']} -->
+		<!--  jdbc:oracle:thin:@revature-testing-will.cdgijuypah2d.us-east-1.rds.amazonaws.com:1521:ORCL -->
 		<property name="username" value="trmsinfo"/>
 		<property name="password" value="projectone"/>
 	</bean>
@@ -20,7 +22,7 @@
 	<!-- 2. SessionFactory -->
 	<bean name="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="beansmvc" /><!-- @Entity -->
+		<property name="packagesToScan" value="com.R3.beans" /><!-- @Entity -->
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
@@ -37,9 +39,10 @@
 	</bean>
 	
 	<!-- 4. DAOs, we have none yet -->
-<!-- 	<bean name="gameDAO" class="com.revature.data.GameDAO"> -->
-<!-- 		<property name="sessionFactory" ref="sessionFactory" /> -->
-<!-- 	</bean> -->
+	<bean name="ImpReviewDAO" class="com.R3.daos.ImpReviewDAO" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 	
 	
 </beans>
