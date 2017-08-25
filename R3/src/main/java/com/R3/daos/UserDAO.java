@@ -5,10 +5,12 @@ import java.util.List;
 import javax.validation.UnexpectedTypeException;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.R3.beans.ReviewBean;
 import com.R3.beans.UserBean;
 
 public class UserDAO {
@@ -44,15 +46,16 @@ public class UserDAO {
 	@Transactional(isolation = Isolation.READ_COMMITTED,
 			propagation = Propagation.REQUIRED,
 			rollbackFor = Exception.class)
-	public void findOneByUsername(UserBean user){
-		sessionFactory.getCurrentSession().createQuery("FROM R3_USER");
+	public void findOne(UserBean user){
+		sessionFactory.getCurrentSession().createCriteria(UserBean.class)
+			.add(Restrictions.eq("userId", user.getUserId()));
 	}
-	
 	@SuppressWarnings("unchecked")
 	@Transactional(isolation = Isolation.READ_COMMITTED,
 			propagation = Propagation.REQUIRED,
 			rollbackFor = Exception.class)
 	public List<UserBean> findAllUsers(){
+																// .createCriteria(UserBean.class); same effect
 			return (List<UserBean>) sessionFactory.getCurrentSession().createQuery("FROM R3_USER");
 	}
 }
