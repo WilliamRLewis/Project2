@@ -37,6 +37,7 @@ public class UserBean {
 	@OneToOne(mappedBy="owner")
 	private RestaurantBean restaurant;
 	
+	private List<ReviewBean> listOfReviews;
 	
 	public UserBean(){
 		super();
