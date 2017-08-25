@@ -29,7 +29,7 @@ public class UserDAOTests {
 	public void testRead(){
 		dao = context.getBean("UserDAO", UserDAO.class);
 		UserBean aUser = new UserBean(1, "Bob", "Emp", "User");
-		dao.findOneByUsername(aUser);
+		dao.findOne(aUser);
 	}
 	@Test
 	public void testReadAll(){
@@ -41,6 +41,20 @@ public class UserDAOTests {
 		dao = context.getBean("UserDAO", UserDAO.class);
 		UserBean aUser = new UserBean(1, "Bobby", "Emp", "User");
 		dao.update(aUser);
+	}
+	@Test
+	public void C_C_C_COMBOTEST(){
+		dao = context.getBean("UserDAO", UserDAO.class);
+		UserBean aUser = new UserBean(1, "Bob", "Emp", "User");
+		dao.create(aUser);
+		
+		dao.findOne(aUser);
+		aUser.setRole("Owner");
+		dao.update(aUser);
+		
+		dao.delete(aUser);
+		
+		
 	}
 	
 	

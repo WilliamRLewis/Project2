@@ -4,13 +4,12 @@ package com.R3.daos;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.R3.beans.RestaurantBean;
 import com.R3.beans.ReviewBean;
-import com.R3.beans.UserBean;
 
 public class ImpReviewDAO {
 	private SessionFactory sessionFactory;
@@ -36,16 +35,15 @@ public class ImpReviewDAO {
 	}
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public ReviewBean find(ReviewBean review) {
-		throw new UnsupportedOperationException(); 
+		return (ReviewBean) sessionFactory.getCurrentSession().createCriteria(ReviewBean.class)
+				.add(Restrictions.eq("id", review.getId()));
 	}
-	public List<ReviewBean> findOnRestaurant(RestaurantBean restaurant) {
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public ReviewBean findById(int pk) {
+		ReviewBean bean = (ReviewBean) sessionFactory.getCurrentSession().load(ReviewBean.class, pk);
+		return bean;
+	}
 	
-		throw new UnsupportedOperationException(); 
-	}
-	public List<ReviewBean> findOnUser(UserBean user) {
-		throw new UnsupportedOperationException(); 
-	}
-
 	@SuppressWarnings("unchecked")
 	public List<ReviewBean> findAll() {
 		return sessionFactory.getCurrentSession().createCriteria(ReviewBean.class).list();
