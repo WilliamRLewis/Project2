@@ -1,5 +1,7 @@
 package com.R3.beans;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -18,7 +21,6 @@ public class UserBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="USER_ID")
-	@ManyToOne
 	private int userId;
 	@NotBlank
 	@Size(max=20)
@@ -28,55 +30,92 @@ public class UserBean {
 	@Size(max=20)
 	@Column(name="USER_PASSWORD")
 	private String password;
-	@Column(name="ROLE_ID")
-	private int roleId;
-	@Column(name="REVIEW_ID")
-	@OneToMany(mappedBy="id") //In ReviewBean
-	private int reviewId;
+	@Column(name="ROLE")
+	private String role;
+	@OneToMany(mappedBy="user")
+	private List<ReviewBean> review;
+	@OneToOne(mappedBy="owner")
+	private RestaurantBean restaurant;
 	
 	
 	public UserBean(){
 		super();
 	}
-	
-	
-	public UserBean(int userId, String username, String password, int roleId, int reviewId) {
+
+
+	public UserBean(int userId, String username, String password, String role) {
 		super();
 		this.userId = userId;
 		this.username = username;
 		this.password = password;
-		this.roleId = roleId;
-		this.reviewId = reviewId;
+		this.role = role;
 	}
+
+
+	@Override
+	public String toString() {
+		return "UserBean [userId=" + userId + ", username=" + username + ", password=" + password + ", role=" + role
+				+ "]";
+	}
+
+
 	public int getUserId() {
 		return userId;
 	}
+
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+
+
 	public String getUsername() {
 		return username;
 	}
+
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+
 	public String getPassword() {
 		return password;
 	}
+
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getRoleId() {
-		return roleId;
+
+
+	public String getRole() {
+		return role;
 	}
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
+
+
+	public void setRole(String role) {
+		this.role = role;
 	}
-	public int getReviewId() {
-		return reviewId;
+
+
+	public List<ReviewBean> getReview() {
+		return review;
 	}
-	public void setReviewId(int reviewId) {
-		this.reviewId = reviewId;
+
+
+	public void setReview(List<ReviewBean> review) {
+		this.review = review;
+	}
+
+
+	public RestaurantBean getRestaurant() {
+		return restaurant;
+	}
+
+
+	public void setRestaurant(RestaurantBean restaurant) {
+		this.restaurant = restaurant;
 	}
 
 
@@ -85,8 +124,7 @@ public class UserBean {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + reviewId;
-		result = prime * result + roleId;
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + userId;
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -107,9 +145,10 @@ public class UserBean {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (reviewId != other.reviewId)
-			return false;
-		if (roleId != other.roleId)
+		if (role == null) {
+			if (other.role != null)
+				return false;
+		} else if (!role.equals(other.role))
 			return false;
 		if (userId != other.userId)
 			return false;
@@ -120,13 +159,7 @@ public class UserBean {
 			return false;
 		return true;
 	}
-
-
-	@Override
-	public String toString() {
-		return "UserBean [userId=" + userId + ", username=" + username + ", password=" + password + ", roleId=" + roleId
-				+ ", reviewId=" + reviewId + "]";
-	} 
+	
 	
 	
 

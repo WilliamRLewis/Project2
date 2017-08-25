@@ -2,6 +2,7 @@ package com.R3.beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +12,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="R3_REVIEW")
@@ -18,60 +22,75 @@ public class ReviewBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="REVIEW_ID")
-	@ManyToOne
 	private int id;
+	@NotNull
 	@Column(name="REVIEW_RATING")
 	private int rating;
 	@Column(name="REVIEW_DESCRIPTION")
-	@OneToMany(mappedBy="ReviewBean")
 	private String description;
-	@Column(name="RESTAURANT_ID")
-	@OneToMany(mappedBy="ReviewBean")
-	private int restaurantId;
-	@Column(name="USER_ID")
-	private int userId;
+	@ManyToOne
+	@JoinColumn(nullable = true, name="RESTAURANT_ID")
+	private RestaurantBean restaurant;
+	@ManyToOne
+	@JoinColumn(nullable = true, name="USER_ID")
+	private UserBean user;
 	
+	public ReviewBean(int id, int rating, String description, RestaurantBean restaurant, UserBean user) {
+		super();
+		this.id = id;
+		this.rating = rating;
+		this.description = description;
+		this.restaurant = restaurant;
+		this.user = user;
+	}
+
 	public ReviewBean(){
 		super();
 	}
-	
-	public ReviewBean(int id, int rating, String description, int restaurantId, int userId) {
-		super();
-		this.id = id;
-		this.rating = rating;
-		this.description = description;
-		this.restaurantId = restaurantId;
-		this.userId = userId;
+
+	@Override
+	public String toString() {
+		return "ReviewBean [id=" + id + ", rating=" + rating + ", description=" + description + ", user=" + user + "]";
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public int getRating() {
 		return rating;
 	}
+
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getRestaurantId() {
-		return restaurantId;
+
+	public RestaurantBean getRestaurant() {
+		return restaurant;
 	}
-	public void setRestaurantId(int restaurantId) {
-		this.restaurantId = restaurantId;
+
+	public void setRestaurant(RestaurantBean restaurant) {
+		this.restaurant = restaurant;
 	}
-	public int getUserId() {
-		return userId;
+
+	public UserBean getUser() {
+		return user;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+
+	public void setUser(UserBean user) {
+		this.user = user;
 	}
 
 	@Override
@@ -81,8 +100,6 @@ public class ReviewBean {
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
 		result = prime * result + rating;
-		result = prime * result + restaurantId;
-		result = prime * result + userId;
 		return result;
 	}
 
@@ -104,18 +121,10 @@ public class ReviewBean {
 			return false;
 		if (rating != other.rating)
 			return false;
-		if (restaurantId != other.restaurantId)
-			return false;
-		if (userId != other.userId)
-			return false;
 		return true;
 	}
+	
 
-	@Override
-	public String toString() {
-		return "ReviewBean [id=" + id + ", rating=" + rating + ", description=" + description + ", restaurantId="
-				+ restaurantId + ", userId=" + userId + "]";
-	}
 
 	
 	

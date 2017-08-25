@@ -1,11 +1,15 @@
 package com.R3.tests.dao;
 
+import java.time.LocalDate;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.R3.beans.RestaurantBean;
 import com.R3.beans.ReviewBean;
+import com.R3.beans.UserBean;
 import com.R3.daos.ImpReviewDAO;
 import com.R3.daos.ReviewDAO;
 
@@ -22,7 +26,9 @@ public class ReviewDAOTests {
 	@Test
 	public void test(){
 		dao = context.getBean("ImpReviewDAO", ImpReviewDAO.class);
-		ReviewBean aReview = new ReviewBean(1, 2, "test", 1, 2); 
+		UserBean aUser = new UserBean(1, "Bob", "Emp", "User");
+		RestaurantBean aRest = new RestaurantBean();
+		ReviewBean aReview = new ReviewBean(1, 3, "TestReview", aRest,aUser);
 		dao.create(aReview);
 	}
 //	@Test
