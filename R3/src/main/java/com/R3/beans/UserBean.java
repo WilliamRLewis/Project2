@@ -1,5 +1,7 @@
 package com.R3.beans;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,6 +36,7 @@ public class UserBean {
 	@OneToMany(mappedBy="id") //In ReviewBean
 	private int reviewId;
 	
+	private List<ReviewBean> listOfReviews;
 	
 	public UserBean(){
 		super();
