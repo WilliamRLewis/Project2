@@ -21,27 +21,20 @@ public class ReviewDAOTests {
 	}
 	
 	@Test
-	public void test(){
+	public void testCreate(){
 		dao = context.getBean("ImpReviewDAO", ImpReviewDAO.class);
 		UserBean aUser = new UserBean(1, "Bob", "Emp", "User");
 		RestaurantBean aRest = new RestaurantBean();
-		ReviewBean aReview = new ReviewBean(1, 3, "TestReview", aRest,aUser);
+		ReviewBean aReview = new ReviewBean(1, 3, "TestReview", aRest, aUser);
 		dao.create(aReview);
 	}
-//	@Test
-//	public void testCreateAndGet(){
-//		AbstractApplicationContext context = 
-//				new ClassPathXmlApplicationContext("dao-beans.xml");
-//		
-//		myDAO.create(aReview);
-//		
-//		System.out.println(myDAO.find(aReview));
-//		
-//	}
 	
-//	@AfterClass
-//	public void shutdown(){
-//		aReview = null;
-//	}
+	@Test
+	public void testRead(){
+		dao = context.getBean("ImpReviewDAO", ImpReviewDAO.class);
+		ReviewBean aReview = context.getBean(ReviewBean.class);
+		
+	}
+
 
 }
