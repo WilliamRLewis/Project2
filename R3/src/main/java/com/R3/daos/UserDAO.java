@@ -48,10 +48,11 @@ public class UserDAO {
 		sessionFactory.getCurrentSession().createQuery("FROM R3_USER");
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Transactional(isolation = Isolation.READ_COMMITTED,
 			propagation = Propagation.REQUIRED,
 			rollbackFor = Exception.class)
 	public List<UserBean> findAllUsers(){
-			return sessionFactory.getCurrentSession().createQuery("FROM R3_USER");
+			return (List<UserBean>) sessionFactory.getCurrentSession().createQuery("FROM R3_USER");
 	}
 }
