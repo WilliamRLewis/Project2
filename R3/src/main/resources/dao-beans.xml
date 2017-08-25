@@ -40,6 +40,10 @@
 	<bean name="ImpReviewDAO" class="com.R3.daos.ImpReviewDAO" >
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean name="UserDAO" class="com.R3.daos.UserDAO" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 	
 	
 	

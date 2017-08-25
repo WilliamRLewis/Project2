@@ -1,7 +1,5 @@
 package com.R3.tests.dao;
 
-import java.time.LocalDate;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -11,7 +9,6 @@ import com.R3.beans.RestaurantBean;
 import com.R3.beans.ReviewBean;
 import com.R3.beans.UserBean;
 import com.R3.daos.ImpReviewDAO;
-import com.R3.daos.ReviewDAO;
 
 public class ReviewDAOTests {
 	private static ApplicationContext context;
