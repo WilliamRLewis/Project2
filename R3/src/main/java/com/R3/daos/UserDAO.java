@@ -55,7 +55,7 @@ public class UserDAO {
 			propagation = Propagation.REQUIRED,
 			rollbackFor = Exception.class)
 	public List<UserBean> findAllUsers(){
-																// .createCriteria(UserBean.class); same effect
-			return (List<UserBean>) sessionFactory.getCurrentSession().createQuery("FROM R3_USER");
+																// .createQuery("FROM R3_USER"); same effect
+			return (List<UserBean>) sessionFactory.getCurrentSession().createCriteria(UserBean.class).list(); 
 	}
 }
