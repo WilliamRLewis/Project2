@@ -31,7 +31,7 @@ public class RestaurantBean {
 	@Column(name="RESTAURANT_PHONE_NUMBER")
 	private int phoneNumber;
 	@Column(name="RESTAURANT_DATE_ESTABLISHED")
-	private LocalDate foundingDate;
+	private String foundingDate;
 	@Column(name="RESTAURANT_DESCRIPTION")
 	private String description;
 	@OneToOne
@@ -45,9 +45,6 @@ public class RestaurantBean {
 	public RestaurantBean(){
 		super();
 	}
-
-
-
 
 
 	public int getRestaurantId() {
@@ -107,12 +104,12 @@ public class RestaurantBean {
 	}
 
 
-	public LocalDate getFoundingDate() {
+	public String getFoundingDate() {
 		return foundingDate;
 	}
 
 
-	public void setFoundingDate(LocalDate foundingDate) {
+	public void setFoundingDate(String foundingDate) {
 		this.foundingDate = foundingDate;
 	}
 
@@ -147,22 +144,19 @@ public class RestaurantBean {
 	}
 
 
-	public RestaurantBean(int restaurantId, String restaurantName, String type, String address, String restaurantHours, int phoneNumber,
-			LocalDate foundingDate, String description, UserBean owner) {
+	public RestaurantBean(String restaurantName, String type, String address, String restaurantHours,
+			int phoneNumber, String foundingDate, String description) {
 		super();
-		this.restaurantId = restaurantId;
-		this.restaurantName= restaurantName;
+		//this.restaurantId = restaurantId;
+		this.restaurantName = restaurantName;
 		this.type = type;
 		this.address = address;
 		this.restaurantHours = restaurantHours;
 		this.phoneNumber = phoneNumber;
 		this.foundingDate = foundingDate;
 		this.description = description;
-		this.owner = owner;
+		//this.owner = owner;
 	}
-
-
-
 
 
 	@Override

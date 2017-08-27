@@ -20,30 +20,49 @@ public class RestaurantDAO {
 	public void setSessionFactory(SessionFactory sessionFactory){
 		this.sessionFactory=sessionFactory;
 	}
-	@Transactional(isolation=Isolation.READ_COMMITTED, propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+	@Transactional(isolation=Isolation.READ_COMMITTED, 
+					propagation=Propagation.REQUIRED, 
+					rollbackFor=Exception.class)
 	public void create(RestaurantBean restaurant){
 		sessionFactory.getCurrentSession().save(restaurant);
 	}
-	@Transactional(isolation=Isolation.READ_COMMITTED, propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+	
+	@Transactional(isolation=Isolation.READ_COMMITTED,
+					propagation=Propagation.REQUIRED, 
+					rollbackFor=Exception.class)
 	public void delete(RestaurantBean restaurant){
 		sessionFactory.getCurrentSession().delete(restaurant);
 	}
-	@Transactional(isolation=Isolation.READ_COMMITTED, propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
-	public void update(RestaurantBean restaurant){
-		sessionFactory.getCurrentSession().saveOrUpdateCopy(restaurant);
+	
+	@SuppressWarnings("deprecation")
+	@Transactional(isolation=Isolation.READ_COMMITTED,
+			propagation=Propagation.REQUIRED, 
+			rollbackFor=Exception.class)
+	public void deleteById(RestaurantBean restaurant){
+		sessionFactory.getCurrentSession().delete("FROM R3_RESTAURANTS WHERE RESTAURANT_ID=?");
 	}
+	
+	@Transactional(isolation=Isolation.READ_COMMITTED,
+					propagation=Propagation.REQUIRED, 
+					rollbackFor=Exception.class)
+	public void update(RestaurantBean restaurant){
+		sessionFactory.getCurrentSession().saveOrUpdate(restaurant);
+	}
+	
 	@SuppressWarnings("unchecked")
-	@Transactional(isolation=Isolation.READ_COMMITTED, propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+	@Transactional(isolation=Isolation.READ_COMMITTED,
+					propagation=Propagation.REQUIRED, 
+					rollbackFor=Exception.class)
 	public List<RestaurantBean> findAllRestaurants(){
 		return (List<RestaurantBean>) sessionFactory.getCurrentSession().createQuery("FROM R3_RESTAURANTS");
 	}
-	@Transactional(isolation=Isolation.READ_COMMITTED, propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+	
+	@Transactional(isolation=Isolation.READ_COMMITTED,
+					propagation=Propagation.REQUIRED, 
+					rollbackFor=Exception.class)
 	public RestaurantBean findByRestaurant(RestaurantBean restaurant){
-		return (RestaurantBean) sessionFactory.getCurrentSession().createCriteria(RestaurantBean.class).add(Restrictions.eq("restaurantId", restaurant.getRestaurantId()))
+		return (RestaurantBean) sessionFactory.getCurrentSession().createCriteria(RestaurantBean.class).add(Restrictions.eq("restaurantId", restaurant.getRestaurantId()));
 	}
-	@Transactional(isolation=Isolation.READ_COMMITTED, propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
-	public void findOne(RestaurantBean restaurant){
-		throw new UnexpectedTypeException();
-	}
+	
 
 }
