@@ -20,6 +20,8 @@ public class RestaurantBean {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="RESTAURANT_ID")
 	private int restaurantId;
+	@Column(name="RESTAURANT_NAME")
+	private String restaurantName;
 	@Column(name="RESTAURANT_TYPE")
 	private String type;
 	@Column(name="RESTAURANT_ADDRESS")
@@ -29,7 +31,7 @@ public class RestaurantBean {
 	@Column(name="RESTAURANT_PHONE_NUMBER")
 	private int phoneNumber;
 	@Column(name="RESTAURANT_DATE_ESTABLISHED")
-	private LocalDate foundingDate;
+	private String foundingDate;
 	@Column(name="RESTAURANT_DESCRIPTION")
 	private String description;
 	@OneToOne
@@ -54,6 +56,13 @@ public class RestaurantBean {
 		this.restaurantId = restaurantId;
 	}
 
+	public String getRestaurantName() {
+		return restaurantName;
+	}
+
+	public void setRestaurantName(String restaurantName) {
+		this.restaurantName = restaurantName;
+	}
 
 	public String getType() {
 		return type;
@@ -95,12 +104,12 @@ public class RestaurantBean {
 	}
 
 
-	public LocalDate getFoundingDate() {
+	public String getFoundingDate() {
 		return foundingDate;
 	}
 
 
-	public void setFoundingDate(LocalDate foundingDate) {
+	public void setFoundingDate(String foundingDate) {
 		this.foundingDate = foundingDate;
 	}
 
@@ -135,27 +144,30 @@ public class RestaurantBean {
 	}
 
 
-	public RestaurantBean(int restaurantId, String type, String address, String restaurantHours, int phoneNumber,
-			LocalDate foundingDate, String description, UserBean owner) {
+	public RestaurantBean(String restaurantName, String type, String address, String restaurantHours,
+			int phoneNumber, String foundingDate, String description) {
 		super();
-		this.restaurantId = restaurantId;
+		//this.restaurantId = restaurantId;
+		this.restaurantName = restaurantName;
 		this.type = type;
 		this.address = address;
 		this.restaurantHours = restaurantHours;
 		this.phoneNumber = phoneNumber;
 		this.foundingDate = foundingDate;
 		this.description = description;
-		this.owner = owner;
+		//this.owner = owner;
 	}
 
 
 	@Override
 	public String toString() {
-		return "RestaurantBean [restaurantId=" + restaurantId + ", type=" + type + ", address=" + address
-				+ ", restaurantHours=" + restaurantHours + ", phoneNumber=" + phoneNumber + ", foundingDate="
-				+ foundingDate + ", description=" + description + ", owner=" + owner + ", allReviews=" + allReviews
-				+ "]";
+		return "RestaurantBean [restaurantId=" + restaurantId + ", restaurantName=" + restaurantName + ", type=" + type
+				+ ", address=" + address + ", restaurantHours=" + restaurantHours + ", phoneNumber=" + phoneNumber
+				+ ", foundingDate=" + foundingDate + ", description=" + description + ", owner=" + owner
+				+ ", allReviews=" + allReviews + "]";
 	}
+
+
 	
 	
 }

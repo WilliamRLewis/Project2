@@ -44,6 +44,9 @@
 	<bean name="UserDAO" class="com.R3.daos.UserDAO" >
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean name="RestaurantDAO" class="com.R3.daos.RestaurantDAO">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
 	
 	
 	
