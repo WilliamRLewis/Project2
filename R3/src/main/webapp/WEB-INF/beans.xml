@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
 	<import resource="classpath:dao-beans.xml"/>
-
+	<import resource="classpath:aop-beans.xml"/>
 	<context:annotation-config /> <!-- @Autowired -->
 	<mvc:annotation-driven /> <!-- @Controller @RequestMapping -->
 	
@@ -23,6 +23,6 @@
 	</bean>
 
 	<!-- Spring core/context: find beans and auto-register -->
-	<context:component-scan base-package="beansmvc" />
+	<context:component-scan base-package="R3" />
 
 </beans>
