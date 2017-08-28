@@ -1,6 +1,7 @@
 package com.R3.tests.dao;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -25,10 +26,12 @@ public class RestaurantDAOTests {
 		RestaurantBean aUser = new RestaurantBean("MacDonalds", "1331 palindrome dr VA 20002", "noon-noon", "aww", 763858367, "2001-10-02", "Was It A Rat I Saw?");
 		dao.create(aUser);
 	}
-	
+	@Ignore
 	@Test
-	public void testFindByRestaurant(RestaurantBean restaurant){
+	public void testFindByRestaurant(){
 		dao = context.getBean("RestaurantDAO", RestaurantDAO.class);
+		RestaurantBean restaurant = new RestaurantBean();
+		restaurant.setRestaurantId(1);
 		dao.findByRestaurant(restaurant);
 	}
 	@Test
@@ -38,10 +41,11 @@ public class RestaurantDAOTests {
 		dao.findAllRestaurants();
 		
 	}
+	@Ignore
 	@Test
-	public void delete(RestaurantBean restaurant){
+	public void delete( ){
 		dao= context.getBean("RestaurantDAO", RestaurantDAO.class);
-		dao.delete(restaurant);
+		dao.deleteById(1);
 	}
 	
 	
