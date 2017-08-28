@@ -11,40 +11,42 @@ import com.R3.beans.RestaurantBean;
 import com.R3.beans.ReviewBean;
 import com.R3.beans.UserBean;
 import com.R3.daos.ImpReviewDAO;
-import com.R3.daos.ReviewDAO;
 
 public class ReviewDAOTests {
 	private static ApplicationContext context;
-	ImpReviewDAO dao;
+	private static ImpReviewDAO dao;
 
 	
 	@BeforeClass
 	public static void initialize(){
 		context = new ClassPathXmlApplicationContext("dao-beans.xml");
+		dao = context.getBean("ImpReviewDAO", ImpReviewDAO.class);
 	}
 	
 	@Test
-	public void test(){
-		dao = context.getBean("ImpReviewDAO", ImpReviewDAO.class);
-		UserBean aUser = new UserBean(1, "Bob", "Emp", "User");
-		RestaurantBean aRest = new RestaurantBean();
-		ReviewBean aReview = new ReviewBean(1, 3, "TestReview", aRest,aUser);
+	public void testCreate(){
+		UserBean owner = new UserBean(72, "Bob", "Pass", "Winner");
+		RestaurantBean aRest= new RestaurantBean(84, "Test",  "Type",  "Address",  "10", 2, LocalDate.now(), "Descript", owner);
+		
+		ReviewBean aReview = new ReviewBean(1, 3, "TestReview", aRest, owner);
 		dao.create(aReview);
 	}
-//	@Test
-//	public void testCreateAndGet(){
-//		AbstractApplicationContext context = 
-//				new ClassPathXmlApplicationContext("dao-beans.xml");
-//		
-//		myDAO.create(aReview);
-//		
-//		System.out.println(myDAO.find(aReview));
-//		
-//	}
 	
-//	@AfterClass
-//	public void shutdown(){
-//		aReview = null;
-//	}
+	@Test
+	public void testRead(){
+		ReviewBean aReview = context.getBean(ReviewBean.class);
+		dao.find(aReview);
+		
+		dao.findAll();
+		
+	}
+	
+	@Test
+	public void testUpdate(){
+		ReviewBean aReview = new ReviewBean();
+		dao.update(aReview);
+	}
+	
+
 
 }

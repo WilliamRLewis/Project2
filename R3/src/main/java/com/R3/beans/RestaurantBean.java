@@ -9,20 +9,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ManyToAny;
-
-@Entity
+@Entity		 
 @Table(name="R3_RESTAURANT")
 public class RestaurantBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="RESTAURANT_ID")
 	private int restaurantId;
+	@Column(name="RESTAURANT_NAME")
+	private String restaurantName;
 	@Column(name="RESTAURANT_TYPE")
 	private String type;
 	@Column(name="RESTAURANT_ADDRESS")
@@ -57,6 +56,13 @@ public class RestaurantBean {
 		this.restaurantId = restaurantId;
 	}
 
+	public String getRestaurantName() {
+		return restaurantName;
+	}
+
+	public void setRestaurantName(String restaurantName) {
+		this.restaurantName = restaurantName;
+	}
 
 	public String getType() {
 		return type;
@@ -138,10 +144,24 @@ public class RestaurantBean {
 	}
 
 
-	public RestaurantBean(int restaurantId, String type, String address, String restaurantHours, int phoneNumber,
-			LocalDate foundingDate, String description, UserBean owner) {
+	public RestaurantBean(int id, String restaurantName, String type, String address, String restaurantHours,
+			int phoneNumber, LocalDate foundingDate, String description) {
+		super();
+		this.restaurantId = id;
+		this.restaurantName = restaurantName;
+		this.type = type;
+		this.address = address;
+		this.restaurantHours = restaurantHours;
+		this.phoneNumber = phoneNumber;
+		this.foundingDate = foundingDate;
+		this.description = description;
+		//this.owner = owner;
+	}
+	public RestaurantBean(int restaurantId, String restaurantName, String type, String address, String restaurantHours,
+			int phoneNumber, LocalDate foundingDate, String description, UserBean owner) {
 		super();
 		this.restaurantId = restaurantId;
+		this.restaurantName = restaurantName;
 		this.type = type;
 		this.address = address;
 		this.restaurantHours = restaurantHours;
@@ -149,16 +169,19 @@ public class RestaurantBean {
 		this.foundingDate = foundingDate;
 		this.description = description;
 		this.owner = owner;
+		this.allReviews = null;
 	}
 
 
 	@Override
 	public String toString() {
-		return "RestaurantBean [restaurantId=" + restaurantId + ", type=" + type + ", address=" + address
-				+ ", restaurantHours=" + restaurantHours + ", phoneNumber=" + phoneNumber + ", foundingDate="
-				+ foundingDate + ", description=" + description + ", owner=" + owner + ", allReviews=" + allReviews
-				+ "]";
+		return "RestaurantBean [restaurantId=" + restaurantId + ", restaurantName=" + restaurantName + ", type=" + type
+				+ ", address=" + address + ", restaurantHours=" + restaurantHours + ", phoneNumber=" + phoneNumber
+				+ ", foundingDate=" + foundingDate + ", description=" + description + ", owner=" + owner
+				+ ", allReviews=" + allReviews + "]";
 	}
+
+
 	
 	
 }

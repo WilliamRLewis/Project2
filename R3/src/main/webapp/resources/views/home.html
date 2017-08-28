@@ -15,11 +15,10 @@
 <script type="text/javascript" src="../controllers/r3Controllers.js"></script>
 </head>
 <body ng-app="R3App>
-
-<form action="login", method="post">     <!-- ng-submit="submit()" ng-controller="ExampleController"> -->
+<form action="login", method="post">
 	Username: <input type="text" name="username" /> <br/>
 	Password: <input type="password" name="password"> <br/>
-	<input type="submit" value="Login" />	
+	<input type="submit" value="Login" />	<!-- ng-click="loginCtrl" -->
 </form>
 <div class="container">
 		<div ng-view></div>
