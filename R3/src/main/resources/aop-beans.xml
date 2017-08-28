@@ -15,7 +15,7 @@
 	<context:component-scan base-package="R3"></context:component-scan>
 
 	<!-- ASPECT -->
-	<bean name=LogWatch class="com.R3.aop.LogWatch" />
+	<bean class="com.R3.aop.LogWatch" />
 	<aop:aspectj-autoproxy /> <!-- @Aspect, @Before, @Pointcut -->
 
 </beans>
