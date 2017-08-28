@@ -38,7 +38,7 @@ public class RestaurantDAO {
 	@Transactional(isolation=Isolation.READ_COMMITTED,
 			propagation=Propagation.REQUIRED, 
 			rollbackFor=Exception.class)
-	public void deleteById(RestaurantBean restaurant){
+	public void deleteById(int restaurant){
 		sessionFactory.getCurrentSession().delete("FROM R3_RESTAURANTS WHERE RESTAURANT_ID=?");
 	}
 	
