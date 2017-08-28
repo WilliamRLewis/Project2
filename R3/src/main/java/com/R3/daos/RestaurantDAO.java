@@ -39,7 +39,7 @@ public class RestaurantDAO {
 			propagation=Propagation.REQUIRED, 
 			rollbackFor=Exception.class)
 	public void deleteById(int restaurant){
-		sessionFactory.getCurrentSession().delete("FROM R3_RESTAURANTS WHERE RESTAURANT_ID=?");
+		sessionFactory.getCurrentSession().delete("FROM R3_RESTAURANT WHERE RESTAURANT_ID=?");
 	}
 	
 	@Transactional(isolation=Isolation.READ_COMMITTED,
@@ -54,7 +54,7 @@ public class RestaurantDAO {
 					propagation=Propagation.REQUIRED, 
 					rollbackFor=Exception.class)
 	public List<RestaurantBean> findAllRestaurants(){
-		return (List<RestaurantBean>) sessionFactory.getCurrentSession().createQuery("FROM R3_RESTAURANTS");
+		return (List<RestaurantBean>) sessionFactory.getCurrentSession().createCriteria(RestaurantBean.class).list(); 
 	}
 	
 	@Transactional(isolation=Isolation.READ_COMMITTED,

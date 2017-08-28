@@ -17,11 +17,12 @@ public class UserDAOTests {
 	public static void initialize(){
 		context = new ClassPathXmlApplicationContext("dao-beans.xml");
 	}
-	@Ignore
+
 	@Test
 	public void testCreate(){
 		dao = context.getBean("UserDAO", UserDAO.class);
-		UserBean aUser = new UserBean(1, "Bob", "Emp", "User");
+		UserBean aUser = new UserBean(1, "Bob", "Pass", "Winner");
+//		UserBean aUser = new UserBean(1, "Bob", "Emp", "User");
 		dao.create(aUser);
 	
 	}

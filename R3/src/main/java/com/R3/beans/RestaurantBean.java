@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Entity
+@Entity		 
 @Table(name="R3_RESTAURANT")
 public class RestaurantBean {
 	@Id
@@ -31,7 +31,7 @@ public class RestaurantBean {
 	@Column(name="RESTAURANT_PHONE_NUMBER")
 	private int phoneNumber;
 	@Column(name="RESTAURANT_DATE_ESTABLISHED")
-	private String foundingDate;
+	private LocalDate foundingDate;
 	@Column(name="RESTAURANT_DESCRIPTION")
 	private String description;
 	@OneToOne
@@ -104,12 +104,12 @@ public class RestaurantBean {
 	}
 
 
-	public String getFoundingDate() {
+	public LocalDate getFoundingDate() {
 		return foundingDate;
 	}
 
 
-	public void setFoundingDate(String foundingDate) {
+	public void setFoundingDate(LocalDate foundingDate) {
 		this.foundingDate = foundingDate;
 	}
 
@@ -144,10 +144,10 @@ public class RestaurantBean {
 	}
 
 
-	public RestaurantBean(String restaurantName, String type, String address, String restaurantHours,
-			int phoneNumber, String foundingDate, String description) {
+	public RestaurantBean(int id, String restaurantName, String type, String address, String restaurantHours,
+			int phoneNumber, LocalDate foundingDate, String description) {
 		super();
-		//this.restaurantId = restaurantId;
+		this.restaurantId = id;
 		this.restaurantName = restaurantName;
 		this.type = type;
 		this.address = address;
@@ -156,6 +156,20 @@ public class RestaurantBean {
 		this.foundingDate = foundingDate;
 		this.description = description;
 		//this.owner = owner;
+	}
+	public RestaurantBean(int restaurantId, String restaurantName, String type, String address, String restaurantHours,
+			int phoneNumber, LocalDate foundingDate, String description, UserBean owner) {
+		super();
+		this.restaurantId = restaurantId;
+		this.restaurantName = restaurantName;
+		this.type = type;
+		this.address = address;
+		this.restaurantHours = restaurantHours;
+		this.phoneNumber = phoneNumber;
+		this.foundingDate = foundingDate;
+		this.description = description;
+		this.owner = owner;
+		this.allReviews = null;
 	}
 
 

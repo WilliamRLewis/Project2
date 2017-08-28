@@ -11,6 +11,7 @@
 	<bean class="com.R3.tests.dao.UserDAOTests"></bean>
 	<bean class="com.R3.beans.UserBean"></bean>
 	<bean class="com.R3.daos.UserDAO"></bean>
+	<bean class="com.R3.daos.RestaurantDAO"/>
 	<!-- aop, beans, context -->
 	<context:component-scan base-package="R3"></context:component-scan>
 
