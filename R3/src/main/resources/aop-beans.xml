@@ -8,15 +8,13 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
 
-	<bean class="com.R3.tests.dao.UserDAOTests"></bean>
-	<bean class="com.R3.beans.UserBean"></bean>
-	<bean class="com.R3.daos.UserDAO"></bean>
-	<bean class="com.R3.daos.RestaurantDAO"/>
+<!-- 	<bean class="com.R3.tests.dao.UserDAOTests"></bean> -->
+<!-- 	<bean class="com.R3.daos.UserDAO"></bean> -->
 	<!-- aop, beans, context -->
-	<context:component-scan base-package="R3"></context:component-scan>
-
 	<!-- ASPECT -->
+	
 	<bean class="com.R3.aop.LogWatch" />
+<!-- 	<bean class="com.R3.tests.aop.TestWatch" /> -->
 	<aop:aspectj-autoproxy /> <!-- @Aspect, @Before, @Pointcut -->
 
 </beans>

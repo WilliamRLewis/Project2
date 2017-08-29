@@ -54,9 +54,15 @@ public class UserController {
 		@RequestMapping(value="all", method=RequestMethod.GET,
 				produces=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
-		public List<UserBean> findAll(){
-			System.out.println("Made it to create!");
-			return dao.findAllUsers();
+		public ResponseEntity<List<UserBean>> findAll(){
+			System.out.println("Made it to getAll!");
+			return new ResponseEntity<List<UserBean>>(this.dao.findAllUsers(), HttpStatus.OK);
 		}// automagically converted object->JSON
 		
+		@RequestMapping(value="test", method=RequestMethod.GET,
+				produces=MediaType.APPLICATION_JSON_VALUE)
+		@ResponseBody
+		public ResponseEntity<Void> testGet(){
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		}
 }
