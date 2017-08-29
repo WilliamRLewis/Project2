@@ -1,15 +1,16 @@
 angular.module("R3App")
-.controller("findAllRestaurantsCtrl", function($http, $scope){
+.controller("findRestaurant", function($http, $scope, $location){
+		$scope.data = {};
 		$scope.getRestaurants = function(){
-				alert("About to attempt get!")
-			$http.get("restaurant/all").success(function (data) {
-		         alert("You Done did it")
+				alert("About to try findAll!")
+			$http.get("user/all").success(function (data) {
+				$scope.data = data;
 		     })
 		     .error(function (error) {
-		         alert("You Done Goofed!");
+		         alert("You done Goofed!");
 		     });
 	}
-	$scope.test = function(){
-		alert("Woo!");
+		$scope.loadReviews = function(){
+			$location.path("/userReviews");
 	}
 });
