@@ -1,13 +1,30 @@
-<div ng-controller="findAllRestaurantsCtrl">
-	<div>
-		I can see Restaurant
-		<table class="table table-striped" frame="box">
-			<tbody>
-				<tr ng-repeat="objects in getRestaurants">
-					<td ng-repeat="cells in objects">{{cells}}</td>
-				</tr>
-			</tbody>	
-		</table>
-		and more
-	</div>
+<div ng-controller="findRestaurant">
+<button type="button" ng-click="getUsers()">See all Restaurants</button>
+	<table st-table="data" class="table table-striped">
+				<thead>
+					<tr>
+						<th>UserId</th>
+						<th>UserName</th>
+						<th>Password</th>
+						<th>Role</th>
+						<th>Reviews</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="restaurant in data" ng-model="form">
+						<td>{{ restaurant.restaurantId }}</td>
+						<td>{{ restaurant.restaurantName }}</td>
+						<td>{{ restaurant.type }}</td>
+						<td>{{ restaurant.address }}</td>
+						<td>{{ restaurant.restaurantHours}}</td>
+						<td>{{ restaurant.phoneNumber}}</td>
+						<td>{{ restaurant.foundingDate}}</td>
+						<td>{{ restaurant.description}}</td>
+						<td>{{ restaurant.owner}}</td>
+						<td><button type="button" class="btn btn-sm btn-success">
+						Reviews </button></td>
+					</tr>
+				</tbody>
+			</table>
+</div>
 </div>
