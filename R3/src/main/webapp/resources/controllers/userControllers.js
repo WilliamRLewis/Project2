@@ -12,3 +12,4 @@ angular.module("R3App")
 	$scope.test = function(){
 		alert("Success!");
 	}
+});

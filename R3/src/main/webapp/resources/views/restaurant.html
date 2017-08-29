@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body ng-controller="findAllRestaurantsCtrl">
-<div>
-	I can see Restaurant
-	<table class="table table-striped" frame="box">
-		<tbody>
-			<tr ng-repeat="objects in getRestaurants">
-				<td ng-repeat="cells in objects">{{cells}}</td>
-			</tr>
-		</tbody>	
-	</table>
-	and more
+<div ng-controller="findAllRestaurantsCtrl">
+	<div>
+		I can see Restaurant
+		<table class="table table-striped" frame="box">
+			<tbody>
+				<tr ng-repeat="objects in getRestaurants">
+					<td ng-repeat="cells in objects">{{cells}}</td>
+				</tr>
+			</tbody>	
+		</table>
+		and more
+	</div>
 </div>
-</body>
-</html>

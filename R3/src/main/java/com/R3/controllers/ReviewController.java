@@ -21,7 +21,7 @@ import com.R3.daos.RestaurantDAO;
 import com.R3.daos.ReviewDAO;
 
 @Controller
-@RequestMapping(value="review")
+@RequestMapping(value="/review/")
 public class ReviewController {
 	@Autowired
 	private ImpReviewDAO dao;

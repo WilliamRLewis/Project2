@@ -18,7 +18,7 @@ import com.R3.beans.RestaurantBean;
 import com.R3.daos.RestaurantDAO;
 
 @Controller
-@RequestMapping(value="restaurant")
+@RequestMapping(value="/restaurant/")
 public class RestaurantController {
 
 		@Autowired
