@@ -24,8 +24,9 @@ public class UserDAO {
 	@Transactional(isolation = Isolation.READ_COMMITTED,
 					propagation = Propagation.REQUIRED,
 					rollbackFor = Exception.class)
-	public void create(UserBean user){
+	public UserBean save(UserBean user){
 		sessionFactory.getCurrentSession().save(user);
+		return user;
 	}
 	
 	@Transactional(isolation = Isolation.READ_COMMITTED,
@@ -36,12 +37,6 @@ public class UserDAO {
 		sessionFactory.getCurrentSession().delete(user);
 	}
 	
-	@Transactional(isolation = Isolation.READ_COMMITTED,
-			propagation = Propagation.REQUIRED,
-			rollbackFor = Exception.class)
-	public void update(UserBean user){
-		sessionFactory.getCurrentSession().save(user);
-	}
 	
 	@Transactional(isolation = Isolation.READ_COMMITTED,
 			propagation = Propagation.REQUIRED,

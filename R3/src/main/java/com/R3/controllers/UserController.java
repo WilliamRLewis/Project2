@@ -5,7 +5,9 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,16 +32,16 @@ public class UserController {
 		@RequestMapping(value="create", method=RequestMethod.POST,
 				consumes=MediaType.APPLICATION_JSON_VALUE)// Accept=application/json
 		@ResponseBody // do not redirect/forward.. rather write to response
-		public void create(@Valid @RequestBody UserBean user){ 
+		public ResponseEntity<UserBean> create(@RequestBody UserBean user){ 
 							//look in request body and find UserBean
-			dao.create(user);
+			return new ResponseEntity<UserBean>(this.dao.save(user), HttpStatus.OK);
 		}// automagically converted JSON->object
 		
 		@RequestMapping(value="update", method=RequestMethod.PUT,
 				consumes=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
-		public void update(@Valid @RequestBody UserBean user){
-			dao.update(user);
+		public ResponseEntity<UserBean> update(@Valid @RequestBody UserBean user){
+			return new ResponseEntity<UserBean>(this.dao.save(user), HttpStatus.OK);
 		}
 		
 		@RequestMapping(value="delete", method=RequestMethod.DELETE,
@@ -49,7 +51,7 @@ public class UserController {
 			dao.delete(user);
 		}
 		
-		@RequestMapping(value="/user/all", method=RequestMethod.GET,
+		@RequestMapping(value="all", method=RequestMethod.GET,
 				produces=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
 		public List<UserBean> findAll(){
