@@ -23,8 +23,9 @@ public class RestaurantDAO {
 	@Transactional(isolation=Isolation.READ_COMMITTED, 
 					propagation=Propagation.REQUIRED, 
 					rollbackFor=Exception.class)
-	public void create(RestaurantBean restaurant){
+	public RestaurantBean save(RestaurantBean restaurant){
 		sessionFactory.getCurrentSession().save(restaurant);
+		return restaurant;
 	}
 	
 	@Transactional(isolation=Isolation.READ_COMMITTED,

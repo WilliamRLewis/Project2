@@ -19,5 +19,5 @@
 	<servlet-mapping>
 		<servlet-name>springDispatcherServlet</servlet-name>
 		<url-pattern>/*</url-pattern>
-	</servlet-mapping>e
+	</servlet-mapping>
 </web-app>

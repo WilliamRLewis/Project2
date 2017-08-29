@@ -19,8 +19,9 @@ public class ImpReviewDAO {
 	}
 	
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void create(ReviewBean review) {
+	public ReviewBean create(ReviewBean review) {
 		sessionFactory.getCurrentSession().save(review);
+		return review;
 
 	}
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
