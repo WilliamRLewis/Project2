@@ -16,7 +16,7 @@ import com.R3.beans.UserBean;
 import com.R3.daos.UserDAO;
 
 @Controller
-@RequestMapping(value="/user/")
+//@RequestMapping(value="/user/")
 public class UserController {
 
 		@Autowired
@@ -49,10 +49,11 @@ public class UserController {
 			dao.delete(user);
 		}
 		
-		@RequestMapping(value="all", method=RequestMethod.GET,
+		@RequestMapping(value="/user/all", method=RequestMethod.GET,
 				produces=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
 		public List<UserBean> findAll(){
+			System.out.println("Made it to create!");
 			return dao.findAllUsers();
 		}// automagically converted object->JSON
 		

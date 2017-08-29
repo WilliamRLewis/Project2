@@ -6,11 +6,13 @@
 <script src="js/angular.js"></script>
 <link href="css/bootstrap.css" rel="stylesheet" />
 <link href="css/bootstrap-theme.css" rel="stylesheet" />
+<script src="controllers/r3Controllers.js"></script>
 <script>
 angular.module("R3App")
 </script>
 
-<script src="controllers/r3Controllers.js"></script>
+
+<script src="controllers/userControllers.js"></script>
 <script src="ngmodules/angular-route.js"></script>
 
 </head>
@@ -21,7 +23,7 @@ angular.module("R3App")
     	<ul class="nav navbar-nav">
         <li ng-class="{ active: isActive('/login')}"><a href="#/login">Login</a></li>
         <li ng-class="{ active: isActive('/test')}"><a href="#/test">Submit Reimbursement Form</a></li>
-    	<li ng-class="{ active: isActive('/userList')"><a href="#/userList">See Users</a></li>
+    	<li ng-class="{ active: isActive('/userList')}"><a href="#/userList">See Users</a></li>
     	</ul>
 	</div>
 	</div>
