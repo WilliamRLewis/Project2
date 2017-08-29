@@ -7,7 +7,8 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
 	<import resource="classpath:dao-beans.xml"/>
-	<import resource="classpath:aop-beans.xml"/>
+<!-- 	<import resource="classpath:aop-beans.xml"/> -->
+	
 	<context:annotation-config /> <!-- @Autowired -->
 	<mvc:annotation-driven /> <!-- @Controller @RequestMapping -->
 	
