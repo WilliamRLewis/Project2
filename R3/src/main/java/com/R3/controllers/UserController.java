@@ -18,7 +18,7 @@ import com.R3.beans.UserBean;
 import com.R3.daos.UserDAO;
 
 @Controller
-//@RequestMapping(value="/user/")
+@RequestMapping(value="/user/")
 public class UserController {
 
 		@Autowired
@@ -28,7 +28,6 @@ public class UserController {
 		{
 			this.dao = dao;
 		}
-		
 		@RequestMapping(value="create", method=RequestMethod.POST,
 				consumes=MediaType.APPLICATION_JSON_VALUE)// Accept=application/json
 		@ResponseBody // do not redirect/forward.. rather write to response
