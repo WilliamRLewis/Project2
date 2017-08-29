@@ -41,8 +41,8 @@ public class UserDAO {
 	@Transactional(isolation = Isolation.READ_COMMITTED,
 			propagation = Propagation.REQUIRED,
 			rollbackFor = Exception.class)
-	public void findOne(UserBean user){
-		sessionFactory.getCurrentSession().createCriteria(UserBean.class)
+	public UserBean findOne(UserBean user){
+		return (UserBean) sessionFactory.getCurrentSession().createCriteria(UserBean.class)
 			.add(Restrictions.eq("userId", user.getUserId()));
 	}
 	@SuppressWarnings("unchecked")
@@ -52,5 +52,12 @@ public class UserDAO {
 	public List<UserBean> findAllUsers(){
 																// .createQuery("FROM R3_USER"); same effect
 			return (List<UserBean>) sessionFactory.getCurrentSession().createCriteria(UserBean.class).list(); 
+	}
+	@Transactional(isolation = Isolation.READ_COMMITTED,
+			propagation = Propagation.REQUIRED,
+			rollbackFor = Exception.class)
+	public List<ReviewBean> getAllReviewsByUserId(Integer id){
+		return ((UserBean) sessionFactory.getCurrentSession().createCriteria(UserBean.class)
+				.add(Restrictions.eq("userId", id))).getReview();
 	}
 }

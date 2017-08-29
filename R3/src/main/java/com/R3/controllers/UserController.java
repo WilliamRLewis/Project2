@@ -10,10 +10,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.R3.beans.ReviewBean;
 import com.R3.beans.UserBean;
 import com.R3.daos.UserDAO;
 
@@ -58,10 +60,10 @@ public class UserController {
 			return new ResponseEntity<List<UserBean>>(this.dao.findAllUsers(), HttpStatus.OK);
 		}// automagically converted object->JSON
 		
-		@RequestMapping(value="test", method=RequestMethod.GET,
+		@RequestMapping(value="Reviews", method=RequestMethod.GET,
 				produces=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
-		public ResponseEntity<Void> testGet(){
-			return new ResponseEntity<Void>(HttpStatus.OK);
+		public ResponseEntity<List<ReviewBean>> getReviews(@RequestHeader Integer userId){
+			return new ResponseEntity<List<ReviewBean>>(this.dao.getAllReviewsByUserId(userId), HttpStatus.OK);
 		}
 }

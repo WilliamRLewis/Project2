@@ -53,6 +53,8 @@ angular.module("R3App", [ "ngRoute"], function($httpProvider) {
 				templateUrl : "views/restaurant.html"
 			}).when("/userList", {
 				templateUrl : "views/userList.html"
+			}).when("/userReviews", {
+				templateUrl : "views/userReviews.html"
 			}).otherwise({
 				redirectTo : "/login"
 			});
