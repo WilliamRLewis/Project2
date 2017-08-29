@@ -61,6 +61,8 @@ angular.module("R3App", [ "ngRoute"], function($httpProvider) {
 				window.alert("New Restaurant!")
 		});
 	}		
+
+
 })
 .controller("HeaderController", function HeaderController($scope, $location) 
 { 
@@ -68,3 +70,4 @@ angular.module("R3App", [ "ngRoute"], function($httpProvider) {
         return viewLocation === $location.path();
     };
 });
+

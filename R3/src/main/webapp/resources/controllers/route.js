@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 angular.module("R3App", ["ngRoute"]);
 angular.module("R3App")
 	.config(function($locationProvider, $routeProvider) {
@@ -15,3 +18,4 @@ angular.module("R3App")
 			templateUrl:"index.html"
 		});
 	});
+
