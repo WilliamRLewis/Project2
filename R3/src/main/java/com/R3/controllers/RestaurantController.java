@@ -15,11 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.R3.beans.RestaurantBean;
-import com.R3.beans.UserBean;
 import com.R3.daos.RestaurantDAO;
-import com.R3.daos.UserDAO;
 
 @Controller
+@RequestMapping(value="restaurant")
 public class RestaurantController {
 
 		@Autowired
@@ -56,7 +55,7 @@ public class RestaurantController {
 				produces=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
 		public List<RestaurantBean> findAll(){
-			System.out.println("Made it to create!");
+			System.out.println("Made it to ReasturantDAO/findALL");
 			return dao.findAllRestaurants();
 		}// automagically converted object->JSON
 		

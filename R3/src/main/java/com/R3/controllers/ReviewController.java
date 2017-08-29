@@ -21,6 +21,7 @@ import com.R3.daos.RestaurantDAO;
 import com.R3.daos.ReviewDAO;
 
 @Controller
+@RequestMapping(value="review")
 public class ReviewController {
 	@Autowired
 	private ImpReviewDAO dao;
@@ -56,7 +57,7 @@ public class ReviewController {
 			produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public List<ReviewBean> findAll(){
-		System.out.println("Made it to create!");
+		System.out.println("Made it to ReviewController/findAll");
 		return dao.findAll();
 	}// automagically converted object->JSON
 }

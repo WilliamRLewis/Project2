@@ -29,7 +29,7 @@ public class RestaurantDAOTests {
 		RestaurantBean aUser = new RestaurantBean(1, "MacDonalds", "1331 palindrome dr VA 20002", "noon-noon", "aww", 763858367, LocalDate.of(2001, 10, 2), "Was It A Rat I Saw?");
 		UserBean owner = new UserBean(72, "Bob", "Pass", "Winner");
 		aUser= new RestaurantBean(1, "Test",  "Type",  "Address",  "10", 2, LocalDate.now(), "Descript", owner);
-		dao.create(aUser);
+		dao.save(aUser);
 	}
 	@Ignore
 	@Test
