@@ -5,7 +5,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+
 
 @Aspect
 public class LogWatch {
@@ -15,7 +15,9 @@ public class LogWatch {
 	private static final String allTests = 
 			"execution( * test*(..) )";
 	private static final String inTesting =
-			"within(com.R3.tests.dao.*";
+			"within(com.R3.tests.dao.*)";
+	private static final String inUserController =
+			"within(com.R3.controllers.*)";
 	
 	@Before(value=allTests)
 	public void interceptBeforeComputeMethod(JoinPoint joinpoint){
@@ -24,13 +26,21 @@ public class LogWatch {
 		System.out.println("At this location: " + joinpoint.getTarget());
 
 	}
+	@Before(value="execution( * save(..))")
+	public void savingObject(JoinPoint joinpoint){
+		System.out.println("About to save a user!");
+	}
+	@Before(value=inUserController)
+	public void inUserController(JoinPoint joinpoint){
+		System.out.println("In userController doing " + joinpoint.getTarget());
+	}
 
-	@Around(value=getters)
-	public Object aroundMethod(ProceedingJoinPoint joinpoint){
-		Object returnedValue = null;
-		System.out.println("[BEFORE] Aspect intercepted " 
-				+ joinpoint.getSignature());
-		System.out.println("At this location: " + joinpoint.getTarget());
+//	@Around(value=getters)
+//	public Object aroundMethod(ProceedingJoinPoint joinpoint){
+//		Object returnedValue = null;
+//		System.out.println("[BEFORE] Aspect intercepted " 
+//				+ joinpoint.getSignature());
+//		System.out.println("At this location: " + joinpoint.getTarget());
 //		// before 
 //		System.out.println("Before " + joinPoint.getSignature());
 //		// call method
@@ -43,7 +53,7 @@ public class LogWatch {
 //		System.out.println("After " + joinwPoint.getSignature());
 //		//returnedValue = "BAAAAA";
 //		throw new RuntimeException();
-		return returnedValue;
-	}
+//		return returnedValue;
+//	}
 	
 }

@@ -16,6 +16,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="R3_REVIEW")
 public class ReviewBean {
@@ -30,9 +32,11 @@ public class ReviewBean {
 	private String description;
 	@ManyToOne
 	@JoinColumn(nullable = true, name="RESTAURANT_ID")
+	@JsonIgnore
 	private RestaurantBean restaurant;
 	@ManyToOne
 	@JoinColumn(nullable = true, name="USER_ID")
+	@JsonIgnore
 	private UserBean user;
 	
 	public ReviewBean(int id, int rating, String description, RestaurantBean restaurant, UserBean user) {
