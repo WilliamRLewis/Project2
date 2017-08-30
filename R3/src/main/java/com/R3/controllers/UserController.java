@@ -60,7 +60,8 @@ public class UserController {
 			return new ResponseEntity<List<UserBean>>(this.dao.findAllUsers(), HttpStatus.OK);
 		}// automagically converted object->JSON
 		
-		@RequestMapping(value="Reviews", method=RequestMethod.GET,
+		//You need to figure out how to send the userId with the get request!
+		@RequestMapping(value="reviews", method=RequestMethod.POST,
 				produces=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
 		public ResponseEntity<List<ReviewBean>> getReviews(@RequestHeader Integer userId){
