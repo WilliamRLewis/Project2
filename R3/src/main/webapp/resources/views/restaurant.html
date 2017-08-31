@@ -1,13 +1,16 @@
 <div ng-controller="findRestaurant">
-<button type="button" ng-click="getUsers()">See all Restaurants</button>
 	<table st-table="data" class="table table-striped">
 				<thead>
 					<tr>
-						<th>UserId</th>
-						<th>UserName</th>
-						<th>Password</th>
-						<th>Role</th>
-						<th>Reviews</th>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Serves</th>
+						<th>address</th>
+						<th>Hours</th>
+						<th>Phone Number</th>
+						<th>Founded in</th>
+						<th>Description</th>
+						<th>Owner</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -21,10 +24,8 @@
 						<td>{{ restaurant.foundingDate}}</td>
 						<td>{{ restaurant.description}}</td>
 						<td>{{ restaurant.owner}}</td>
-						<td><button type="button" class="btn btn-sm btn-success">
-						Reviews </button></td>
+						<td><button type="button" ng-click="loadReviews()" class="btn btn-sm btn-success">Restaurant Reviews </button></td>
 					</tr>
 				</tbody>
 			</table>
-</div>
 </div>

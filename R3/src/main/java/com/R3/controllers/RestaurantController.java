@@ -51,12 +51,13 @@ public class RestaurantController {
 			dao.delete(restaurant);
 		}
 		
+		@SuppressWarnings("unchecked")
 		@RequestMapping(value="all", method=RequestMethod.GET,
 				produces=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
 		public List<RestaurantBean> findAll(){
 			System.out.println("Made it to ReasturantDAO/findALL");
-			return dao.findAllRestaurants();
+			return (List<RestaurantBean>) new ResponseEntity<List<RestaurantBean>>(this.dao.findAllRestaurants(), HttpStatus.OK);
 		}// automagically converted object->JSON
 		
 }
