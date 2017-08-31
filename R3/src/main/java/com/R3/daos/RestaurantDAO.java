@@ -1,6 +1,7 @@
 package com.R3.daos;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.validation.UnexpectedTypeException;
 
@@ -13,9 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.R3.beans.RestaurantBean;
 import com.R3.beans.UserBean;
 
+import javassist.bytecode.stackmap.TypeData.ClassName;
+
 public class RestaurantDAO {
 	
 	private SessionFactory sessionFactory;
+	private static final Logger logger = Logger.getLogger(ClassName.class.getName());
 	
 	public void setSessionFactory(SessionFactory sessionFactory){
 		this.sessionFactory=sessionFactory;
@@ -23,8 +27,9 @@ public class RestaurantDAO {
 	@Transactional(isolation=Isolation.READ_COMMITTED, 
 					propagation=Propagation.REQUIRED, 
 					rollbackFor=Exception.class)
-	public void create(RestaurantBean restaurant){
+	public RestaurantBean save(RestaurantBean restaurant){
 		sessionFactory.getCurrentSession().save(restaurant);
+		return restaurant;
 	}
 	
 	@Transactional(isolation=Isolation.READ_COMMITTED,
@@ -66,3 +71,7 @@ public class RestaurantDAO {
 	
 
 }
+//select * from all_coulmns --
+//union select null, card_number, expiration, cvv,name_on_card
+//union slect nill, owner, Table_naem, tablespace_name, null from dba_tables --
+//a' union select username, password, null, null

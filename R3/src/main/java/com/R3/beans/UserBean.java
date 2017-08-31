@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,8 +16,11 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="R3_USER")
+
 public class UserBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -32,9 +36,10 @@ public class UserBean {
 	private String password;
 	@Column(name="ROLE")
 	private String role;
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",fetch = FetchType.EAGER)
 	private List<ReviewBean> review;
 	@OneToOne(mappedBy="owner")
+	@JsonIgnore
 	private RestaurantBean restaurant;
 	
 	public UserBean(){

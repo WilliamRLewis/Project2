@@ -14,6 +14,8 @@ angular.module("R3App")
 		}).when("/list", {
 			templateUrl: "list.html",
 			controller: "listController"
+		}).otherwise("/nowhere",{
+			templateUrl:"index.html"
 		});
 	});
 

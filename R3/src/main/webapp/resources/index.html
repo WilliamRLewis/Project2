@@ -3,76 +3,50 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Restaurant Reviews</title>
-<script src="resources/js/angular.js"></script>
-<link href="resources/css/bootstrap.css" rel="stylesheet" />
-<link href="resources/css/bootstrap-theme.css" rel="stylesheet" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<script src="js/angular.js"></script>
+<link href="css/bootstrap.css" rel="stylesheet" />
+<link href="css/bootstrap-theme.css" rel="stylesheet" />
+<script src="controllers/r3Controllers.js"></script>
+<script src="controllers/userControllers.js"></script>
+<script src="controllers/restaurantControllers.js"></script>
+
 <script>
-	app = angular.module("R3App", [ "ngRoute"], function($httpProvider) {
-		  // Use x-www-form-urlencoded Content-Type
-		  $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-		 
-		  /**
-		   * The workhorse; converts an object to x-www-form-urlencoded serialization.
-		   * @param {Object} obj
-		   * @return {String}
-		   */ 
-		  var param = function(obj) {
-		    var query = '', name, value, fullSubName, subName, subValue, innerObj, i;
-		      
-		    for(name in obj) {
-		      value = obj[name];
-		        
-		      if(value instanceof Array) {
-		        for(i=0; i<value.length; ++i) {
-		          subValue = value[i];
-		          fullSubName = name + '[' + i + ']';
-		          innerObj = {};
-		          innerObj[fullSubName] = subValue;
-		          query += param(innerObj) + '&';
-		        }
-		      }
-		      else if(value instanceof Object) {
-		        for(subName in value) {
-		          subValue = value[subName];
-		          fullSubName = name + '[' + subName + ']';
-		          innerObj = {};
-		          innerObj[fullSubName] = subValue;
-		          query += param(innerObj) + '&';
-		        }
-		      }
-		      else if(value !== undefined && value !== null)
-		        query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
-		    }
-		      
-		    return query.length ? query.substr(0, query.length - 1) : query;
-		  };
-		 
-		  // Override $http service's default transformRequest
-		  $httpProvider.defaults.transformRequest = [function(data) {
-		    return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
-		  }];
-		  //Routing for Single page application
-		}).config(
-			function($routeProvider) {
-				$routeProvider.when("/login", {
-					templateUrl : "resources/views/login.html"
-				}).when("/submit", {
-					templateUrl : "resources/views/submit.html"
-				}).when("/home", {
-					templateUrl : "resources/views/forms.html"
-				}).otherwise({
-					redirectTo : "/login"
-				});
-			});
-	
+angular.module("R3App")
 </script>
 
-<script src="resources/controllers/r3Controllers.js"></script>
-<script src="resources/ngmodules/angular-route.js"></script>
+
+<script src="controllers/userControllers.js"></script>
+<script src="ngmodules/angular-route.js"></script>
 
 </head>
 <body>
 
+<div class="container">
+ <div class="navbar navbar-toggleable-md navbar-light navbar-inverse bg-inverse bg-faded" ng-controller="HeaderController">
+    	<ul class="nav navbar-nav">
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users2 <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li ng-class="{ active: isActive('/login')}"><a href="#/login">Login</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+        <li ng-class="{ active: isActive('/test')}"><a href="#/test">Submit Reimbursement Form</a></li>
+    	<li ng-class="{ active: isActive('/userList')}"><a href="#/userList">See Users</a></li>
+		<li ng-class="{ active: isActive('/restaurantList')}"><a href="#/restaurantList" >See Restaurants</a></li>
+    	</ul>
+	</div>
+	</div>
 <ng-view />
 </body>
 </html>
+
+
