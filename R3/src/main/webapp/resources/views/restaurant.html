@@ -1,31 +1,76 @@
-<div ng-controller="findRestaurant">
-	<table st-table="data" class="table table-striped">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Name</th>
-						<th>Serves</th>
-						<th>address</th>
-						<th>Hours</th>
-						<th>Phone Number</th>
-						<th>Founded in</th>
-						<th>Description</th>
-						<th>Owner</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="restaurant in data" ng-model="form">
-						<td>{{ restaurant.restaurantId }}</td>
-						<td>{{ restaurant.restaurantName }}</td>
-						<td>{{ restaurant.type }}</td>
-						<td>{{ restaurant.address }}</td>
-						<td>{{ restaurant.restaurantHours}}</td>
-						<td>{{ restaurant.phoneNumber}}</td>
-						<td>{{ restaurant.foundingDate}}</td>
-						<td>{{ restaurant.description}}</td>
-						<td>{{ restaurant.owner}}</td>
-						<td><button type="button" ng-click="loadReviews()" class="btn btn-sm btn-success">Restaurant Reviews </button></td>
-					</tr>
-				</tbody>
-			</table>
+ <style>
+.example-animate-container { 
+	background:white; 
+	border:1px solid black; 
+	margin:0; 
+	padding:0 10px; 
+	} 
+
+.animate-repeat { 
+	line-height:50px; 
+	list-style-type: none; 
+	padding: 0; 
+	border: 1px solid #ddd; 
+	border-bottom: 1px solid #451414; 
+	border-bottom-width: 13px; 
+	border-bottom-style: solid; 
+} 
+.listpadding{ 
+	padding-left:1cm; 
+ } 
+</style>
+<div class="container">
+	<div ng-controller="findRestaurant">
+		<ul class="example-animate-container"> 
+			<div class="animate-repeat" > 
+				<li ng-repeat="restaurant in data">  <!--track by restaurant.restaurantId -->
+					<div> 
+						<strong>{{restaurant.restaurantName}}</strong> 
+							{{restaurant.type}} 
+					</div> 
+					<div class = "listpadding"> 
+						{{ restaurant.address }} 
+						{{ restaurant.phoneNumber}} 
+					</div> 
+					{{ restaurant.description}}{{ restaurant.owner}} 
+					<button type="button" ng-click="loadReviews()" class="btn btn-sm btn-success">See{{data.length}}Reviews </button> 
+				</li> 
+    
+				<li ng-if="data.length === 0"> 
+					<strong>No results found...</strong> 
+				</li>
+			</div>
+		 </ul> 
+	</div>
 </div>
+
+
+<!-- 	<table st-table="data" class="table table-striped"> -->
+<!-- 				<thead> -->
+<!-- 					<tr> -->
+<!-- 						<th>ID</th> -->
+<!-- 						<th>Name</th> -->
+<!-- 						<th>Serves</th> -->
+<!-- 						<th>address</th> -->
+<!-- 						<th>Hours</th> -->
+<!-- 						<th>Phone Number</th> -->
+<!-- 						<th>Founded in</th> -->
+<!-- 						<th>Description</th> -->
+<!-- 						<th>Owner</th> -->
+<!-- 					</tr> -->
+<!-- 				</thead> -->
+<!-- 				<tbody> -->
+<!-- 					<tr ng-repeat="restaurant in data" ng-model="form"> -->
+<!-- 						<td>{{ restaurant.restaurantId }}</td> -->
+<!-- 						<td>{{ restaurant.restaurantName }}</td> -->
+<!-- 						<td>{{ restaurant.type }}</td> -->
+<!-- 						<td>{{ restaurant.address }}</td> -->
+<!-- 						<td>{{ restaurant.restaurantHours}}</td> -->
+<!-- 						<td>{{ restaurant.phoneNumber}}</td> -->
+<!-- 						<td>{{ restaurant.foundingDate}}</td> -->
+<!-- 						<td>{{ restaurant.description}}</td> -->
+<!-- 						<td>{{ restaurant.owner}}</td> -->
+<!-- 						<td><button type="button" ng-click="loadReviews()" class="btn btn-sm btn-success">Restaurant Reviews </button></td> -->
+<!-- 					</tr> -->
+<!-- 				</tbody> -->
+<!-- 			</table> -->

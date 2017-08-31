@@ -56,6 +56,7 @@ public class UserController {
 				produces=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
 		public ResponseEntity<List<UserBean>> findAll(){
+			System.out.println("IN USERCONTROLLER TO GET ALL USERBEANS");
 			return new ResponseEntity<List<UserBean>>(this.dao.findAllUsers(), HttpStatus.OK);
 		}// automagically converted object->JSON
 		

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.R3.beans.RestaurantBean;
+import com.R3.beans.ReviewBean;
 import com.R3.beans.UserBean;
 
 import javassist.bytecode.stackmap.TypeData.ClassName;
@@ -66,7 +67,16 @@ public class RestaurantDAO {
 					propagation=Propagation.REQUIRED, 
 					rollbackFor=Exception.class)
 	public RestaurantBean findByRestaurant(RestaurantBean restaurant){
+		
 		return (RestaurantBean) sessionFactory.getCurrentSession().createCriteria(RestaurantBean.class).add(Restrictions.eq("restaurantId", restaurant.getRestaurantId()));
+	}
+	@Transactional(isolation = Isolation.READ_COMMITTED,
+			propagation = Propagation.REQUIRED,
+			rollbackFor = Exception.class)
+	public List<ReviewBean> getAllReviewsByRestaurantId(Integer pk){
+		RestaurantBean bean = (RestaurantBean) sessionFactory.getCurrentSession().load(RestaurantBean.class, pk);
+		List<ReviewBean> myList = bean.getAllReviews();
+		return myList;
 	}
 	
 

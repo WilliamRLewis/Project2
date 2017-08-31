@@ -10,11 +10,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.R3.beans.RestaurantBean;
+import com.R3.beans.ReviewBean;
 import com.R3.daos.RestaurantDAO;
 
 @Controller
@@ -55,9 +57,17 @@ public class RestaurantController {
 		@RequestMapping(value="all", method=RequestMethod.GET,
 				produces=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
-		public List<RestaurantBean> findAll(){
-			System.out.println("Made it to ReasturantDAO/findALL");
-			return (List<RestaurantBean>) new ResponseEntity<List<RestaurantBean>>(this.dao.findAllRestaurants(), HttpStatus.OK);
+		
+		public ResponseEntity<List<RestaurantBean>> findAll(){
+			System.out.println("IN RESTAURANTCONTROLLER TO GET ALL RESTAURANTBEANS");
+			return new ResponseEntity<List<RestaurantBean>>(this.dao.findAllRestaurants(), HttpStatus.OK);
 		}// automagically converted object->JSON
+		@RequestMapping(value="reviews", method=RequestMethod.GET,
+				produces=MediaType.APPLICATION_JSON_VALUE)
+		@ResponseBody
+		public ResponseEntity<List<ReviewBean>> getReviews(@RequestHeader Integer restaurantId){
+			System.out.println("IN RESTAURANTCONTROLLER USING GETREVIEW METHOD");
+			return new ResponseEntity<List<ReviewBean>>(this.dao.getAllReviewsByRestaurantId(restaurantId), HttpStatus.OK);
+		}
 		
 }
