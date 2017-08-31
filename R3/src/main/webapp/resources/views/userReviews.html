@@ -1,6 +1,21 @@
-<div>
+<div ng-controller="findUsers">
 
-This is a review!
+<table st-table="data" class="table table-striped">
+				<thead>
+					<tr>
+						<th>ReviewId</th>
+						<th>Review Rating</th>
+						<th>Review Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="review in data" ng-model="form">
+						<td>{{ review.id }}</td>
+						<td>{{ review.rating }}</td>
+						<td>{{ review.description }}</td>
+					</tr>
+				</tbody>
+			</table>
 
 
 </div>

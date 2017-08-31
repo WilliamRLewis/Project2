@@ -56,8 +56,9 @@ public class UserDAO {
 	@Transactional(isolation = Isolation.READ_COMMITTED,
 			propagation = Propagation.REQUIRED,
 			rollbackFor = Exception.class)
-	public List<ReviewBean> getAllReviewsByUserId(Integer id){
-		return ((UserBean) sessionFactory.getCurrentSession().createCriteria(UserBean.class)
-				.add(Restrictions.eq("userId", id))).getReview();
+	public List<ReviewBean> getAllReviewsByUserId(Integer pk){
+		UserBean bean = (UserBean) sessionFactory.getCurrentSession().load(UserBean.class, pk);
+		List<ReviewBean> myList = bean.getReview();
+		return myList;
 	}
 }

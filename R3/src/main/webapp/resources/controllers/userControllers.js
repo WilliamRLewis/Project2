@@ -1,16 +1,23 @@
 angular.module("R3App")
-.controller("findUsers", function($http, $scope, $location){
+.controller("findUsers", function($http, $scope, $location, $route){
 		$scope.data = {};
-//		$scope.getUsers = function(){
-//				alert("About to attempt get!")
 			$http.get("user/all").success(function (data) {
 				$scope.data = data;
 		     })
 		     .error(function (error) {
-		         alert("Loser");
+		         alert("Failed to load Users");
 		     });
 	
-		$scope.loadReviews = function(){
+		$scope.loadReviews = function(userId){
 			$location.path("/userReviews");
+			$http.get("user/reviews" ,{
+			    headers: {'userId': userId}})
+			.success(function(data){
+				$scope.data = data;
+				$route.reload();
+			})
+			.error(function (){
+				alert("Failed to load reviews");
+			});
 	}
 });
