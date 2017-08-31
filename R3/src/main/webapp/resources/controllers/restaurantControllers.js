@@ -20,6 +20,19 @@ angular.module("R3App")
 					alert("Failed to load reviews");
 				});
 		}
-	});
-/*$scope.getRestaurants = function(){
-alert("About to try findAll!")*/
+	})
+.controller("createUserCtrl", function ($scope, $http, $location, createUrl) { //test controller to route user create info to usercontroller.create
+
+    $scope.authenticate = function (user, pass) {
+       $http.post(createUrl, {
+            id		:id,
+    	   	username: user,
+            password: pass,
+            role	:id
+        }).success(function (data) {
+            $location.path("/home");
+        }).error(function (error) {
+            $scope.authenticationError = error;
+        });
+    }
+});

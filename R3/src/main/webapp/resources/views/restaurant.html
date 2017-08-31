@@ -1,54 +1,48 @@
-<style>
-.example-animate-container {
-  background:white;
-  border:1px solid black;
-  list-style:none;
-  margin:0;
-  padding:0 10px;
-}
+ <style>
+.example-animate-container { 
+	background:white; 
+	border:1px solid black; 
+	margin:0; 
+	padding:0 10px; 
+	} 
 
-.animate-repeat {
-  line-height:30px;
-  list-style:none;
-  box-sizing:border-box;
-}
-
-.animate-repeat.ng-move,
-.animate-repeat.ng-enter,
-.animate-repeat.ng-leave {
-  transition:all linear 0.5s;
-}
-
-.animate-repeat.ng-leave.ng-leave-active,
-.animate-repeat.ng-move,
-.animate-repeat.ng-enter {
-  opacity:0;
-  max-height:0;
-}
-
-.animate-repeat.ng-leave,
-.animate-repeat.ng-move.ng-move-active,
-.animate-repeat.ng-enter.ng-enter-active {
-  opacity:1;
-  max-height:30px;
-}
+.animate-repeat { 
+	line-height:50px; 
+	list-style-type: none; 
+	padding: 0; 
+	border: 1px solid #ddd; 
+	border-bottom: 1px solid #451414; 
+	border-bottom-width: 13px; 
+	border-bottom-style: solid; 
+} 
+.listpadding{ 
+	padding-left:1cm; 
+ } 
 </style>
-<div ng-controller="findRestaurant">
-<ul class="example-animate-container">
-    <li class="animate-repeat" ng-repeat="restaurant in data"> 
-      {{restaurant.restaurantName} who is {{restaurant.type}} years old.
-      <button type="button" ng-click="loadReviews()" class="btn btn-sm btn-success">Restaurant Reviews </button>
-<!--       {{ restaurant.address }}{{ restaurant.restaurantHours}}{{ restaurant.phoneNumber}} -->
-<!--       {{ restaurant.foundingDate}}{{ restaurant.description}}{{ restaurant.owner}} -->
-    </li>
-<!--     <li class="animate-repeat" ng-if="results.length === 0"> -->
-<!--       <strong>No results found...</strong> -->
-<!--     </li> -->
-  </ul>
+<div class="container">
+	<div ng-controller="findRestaurant">
+		<ul class="example-animate-container"> 
+			<div class="animate-repeat" > 
+				<li ng-repeat="restaurant in data">  <!--track by restaurant.restaurantId -->
+					<div> 
+						<strong>{{restaurant.restaurantName}}</strong> 
+							{{restaurant.type}} 
+					</div> 
+					<div class = "listpadding"> 
+						{{ restaurant.address }} 
+						{{ restaurant.phoneNumber}} 
+					</div> 
+					{{ restaurant.description}}{{ restaurant.owner}} 
+					<button type="button" ng-click="loadReviews()" class="btn btn-sm btn-success">See{{data.length}}Reviews </button> 
+				</li> 
+    
+				<li ng-if="data.length === 0"> 
+					<strong>No results found...</strong> 
+				</li>
+			</div>
+		 </ul> 
+	</div>
 </div>
-
-
-
 
 
 <!-- 	<table st-table="data" class="table table-striped"> -->
