@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,7 +39,7 @@ public class RestaurantBean {
 	@JoinColumn(name="USER_ID",
 	nullable=false)
 	private UserBean owner;
-	@OneToMany(mappedBy="restaurant")
+	@OneToMany(mappedBy="restaurant",fetch = FetchType.EAGER)
 	private List<ReviewBean> allReviews;
 
 	

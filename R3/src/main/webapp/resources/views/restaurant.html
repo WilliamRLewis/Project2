@@ -1,31 +1,82 @@
+<style>
+.example-animate-container {
+  background:white;
+  border:1px solid black;
+  list-style:none;
+  margin:0;
+  padding:0 10px;
+}
+
+.animate-repeat {
+  line-height:30px;
+  list-style:none;
+  box-sizing:border-box;
+}
+
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  transition:all linear 0.5s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity:0;
+  max-height:0;
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity:1;
+  max-height:30px;
+}
+</style>
 <div ng-controller="findRestaurant">
-	<table st-table="data" class="table table-striped">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Name</th>
-						<th>Serves</th>
-						<th>address</th>
-						<th>Hours</th>
-						<th>Phone Number</th>
-						<th>Founded in</th>
-						<th>Description</th>
-						<th>Owner</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="restaurant in data" ng-model="form">
-						<td>{{ restaurant.restaurantId }}</td>
-						<td>{{ restaurant.restaurantName }}</td>
-						<td>{{ restaurant.type }}</td>
-						<td>{{ restaurant.address }}</td>
-						<td>{{ restaurant.restaurantHours}}</td>
-						<td>{{ restaurant.phoneNumber}}</td>
-						<td>{{ restaurant.foundingDate}}</td>
-						<td>{{ restaurant.description}}</td>
-						<td>{{ restaurant.owner}}</td>
-						<td><button type="button" ng-click="loadReviews()" class="btn btn-sm btn-success">Restaurant Reviews </button></td>
-					</tr>
-				</tbody>
-			</table>
+<ul class="example-animate-container">
+    <li class="animate-repeat" ng-repeat="restaurant in data"> 
+      {{restaurant.restaurantName} who is {{restaurant.type}} years old.
+      <button type="button" ng-click="loadReviews()" class="btn btn-sm btn-success">Restaurant Reviews </button>
+<!--       {{ restaurant.address }}{{ restaurant.restaurantHours}}{{ restaurant.phoneNumber}} -->
+<!--       {{ restaurant.foundingDate}}{{ restaurant.description}}{{ restaurant.owner}} -->
+    </li>
+<!--     <li class="animate-repeat" ng-if="results.length === 0"> -->
+<!--       <strong>No results found...</strong> -->
+<!--     </li> -->
+  </ul>
 </div>
+
+
+
+
+
+<!-- 	<table st-table="data" class="table table-striped"> -->
+<!-- 				<thead> -->
+<!-- 					<tr> -->
+<!-- 						<th>ID</th> -->
+<!-- 						<th>Name</th> -->
+<!-- 						<th>Serves</th> -->
+<!-- 						<th>address</th> -->
+<!-- 						<th>Hours</th> -->
+<!-- 						<th>Phone Number</th> -->
+<!-- 						<th>Founded in</th> -->
+<!-- 						<th>Description</th> -->
+<!-- 						<th>Owner</th> -->
+<!-- 					</tr> -->
+<!-- 				</thead> -->
+<!-- 				<tbody> -->
+<!-- 					<tr ng-repeat="restaurant in data" ng-model="form"> -->
+<!-- 						<td>{{ restaurant.restaurantId }}</td> -->
+<!-- 						<td>{{ restaurant.restaurantName }}</td> -->
+<!-- 						<td>{{ restaurant.type }}</td> -->
+<!-- 						<td>{{ restaurant.address }}</td> -->
+<!-- 						<td>{{ restaurant.restaurantHours}}</td> -->
+<!-- 						<td>{{ restaurant.phoneNumber}}</td> -->
+<!-- 						<td>{{ restaurant.foundingDate}}</td> -->
+<!-- 						<td>{{ restaurant.description}}</td> -->
+<!-- 						<td>{{ restaurant.owner}}</td> -->
+<!-- 						<td><button type="button" ng-click="loadReviews()" class="btn btn-sm btn-success">Restaurant Reviews </button></td> -->
+<!-- 					</tr> -->
+<!-- 				</tbody> -->
+<!-- 			</table> -->

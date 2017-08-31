@@ -56,8 +56,8 @@ public class ReviewController {
 	@RequestMapping(value="all", method=RequestMethod.GET,
 			produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<ReviewBean> findAll(){
+	public ResponseEntity<List<ReviewBean>> findAll(){
 		System.out.println("Made it to ReviewController/findAll");
-		return dao.findAll();
+		return new ResponseEntity<List<ReviewBean>>(this.dao.findAll(), HttpStatus.OK);
 	}// automagically converted object->JSON
 }
