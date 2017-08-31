@@ -12,9 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,11 +26,11 @@ public class UserBean {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="USER_ID")
 	private int userId;
-	@NotBlank
+	@NotNull
 	@Size(max=20)
 	@Column(name="USER_USERNAME")
 	private String username;
-	@NotBlank
+	@NotNull
 	@Size(max=20)
 	@Column(name="USER_PASSWORD")
 	private String password;

@@ -21,7 +21,7 @@
 	</bean>
 	
 	<!-- 2. SessionFactory -->
-	<bean name="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+	<bean name="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan" value="com.R3.beans" /><!-- @Entity -->
 		<property name="hibernateProperties">
@@ -35,7 +35,7 @@
 	</bean>
 	
 	<!-- 3. TransactionManager -->
-	<bean name="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	<bean name="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	

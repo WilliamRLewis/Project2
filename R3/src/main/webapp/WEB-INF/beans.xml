@@ -12,7 +12,8 @@
 
 	
 	<context:annotation-config /> <!-- @Autowired -->
-	<mvc:annotation-driven /> <!-- @Controller @RequestMapping -->
+	<mvc:annotation-driven /> <!--  @Controller @RequestMapping -->
+
 	
 	<!-- where to find/how to map resources by URI -->
 	<mvc:resources location="/resources/**" mapping="/**"/>
