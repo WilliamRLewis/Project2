@@ -1,7 +1,11 @@
-
-<div ng-controller="findUsers">
-
-<table st-table="data" class="table table-striped">
+<style>
+container p { display: inline }
+</style>
+<div class="container">
+	<div>
+		<table st-table="data" class="table table-striped">
+		There are {{data.length}} users.
+			<input type="search" ng-model="data.username" placeholder="filter users" aria-label="filter users" />
 				<thead>
 					<tr>
 						<th>UserId</th>
@@ -12,14 +16,15 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="user in data" ng-model="form">
+					<tr ng-repeat="user in data | filter:data.username" ng-model="form">
 						<td>{{ user.userId }}</td>
 						<td>{{ user.username }}</td>
 						<td>{{ user.password }}</td>
 						<td>{{ user.role }}</td>
-						<td><button type="button" ng-click="loadReviews(user.userId)" class="btn btn-sm btn-success">
+						<td><button type="button" ng-click="controller.loadReviews(user.userId)" class="btn btn-sm btn-success">
 						Reviews </button></td>
 					</tr>
 				</tbody>
-			</table>
+		</table>
+	</div>
 </div>

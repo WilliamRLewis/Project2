@@ -21,7 +21,7 @@ public class UserDAOTests {
 	@Test
 	public void testCreate(){
 		dao = context.getBean("UserDAO", UserDAO.class);
-		UserBean aUser = new UserBean(1, "Bob", "Pass", "Winner");
+		UserBean aUser = new UserBean(1, "Jeff", "Pass", "Winer");
 //		UserBean aUser = new UserBean(1, "Bob", "Emp", "User");
 		dao.save(aUser);
 	

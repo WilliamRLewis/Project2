@@ -17,8 +17,7 @@
 angular.module("R3App")
 </script>
 
-
-<script src="controllers/userControllers.js"></script>
+<script src="controllers/reviewControllers.js"></script>
 <script src="ngmodules/angular-route.js"></script>
 
 </head>
@@ -27,21 +26,27 @@ angular.module("R3App")
 <div class="container">
  <div class="navbar navbar-toggleable-md navbar-light navbar-inverse bg-inverse bg-faded" ng-controller="HeaderController">
     	<ul class="nav navbar-nav">
-        <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users2 <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li ng-class="{ active: isActive('/login')}"><a href="#/login">Login</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-        <li ng-class="{ active: isActive('/test')}"><a href="#/test">Submit Reimbursement Form</a></li>
+        	<li class="dropdown">
+       			<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a>
+       				 <ul class="dropdown-menu">
+           				<li ng-class="{ active: isActive('/login')}"><a href="#/login">Login</a></li>
+			            <li role="separator" class="divider"></li>
+			            <li ng-class="{active: isActive('/userReviews')}"><a href="#/userReviews">View my Reviews</a></li>
+			            <li role="separator" class="divider"></li>
+			            <li ng-class="{ active: isActive('/createUser')}"><a href="#/createUser">Create User</a></li>
+			            <li role="separator" class="divider"></li>
+			            <li ng-class="{ active: isActive('createReview')}"><a href="#/createReview">Create Review</a></li>
+         			 </ul>
+       		</li>
+        <li ng-class="{ active: isActive('/allReviews')}"><a href="#/allReviews">View All Reviews</a></li>
     	<li ng-class="{ active: isActive('/userList')}"><a href="#/userList">See Users</a></li>
-		<li ng-class="{ active: isActive('/restaurantList')}"><a href="#/restaurantList" >See Restaurants</a></li>
+    	<li class="dropdown">
+    		<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Restaurants <span class="caret"></span></a>
+    		<ul class="dropdown-menu">
+    			<li ng-class="{ active: isActive('/restaurantList')}"><a href="#/restaurantList" >See Restaurants</a></li>
+           		<li ng-class="{ active: isActive('/createRestaurant')}"><a href="#/createRestaurant" >Create Restaurant</a></li>
+            </ul>
+		
     	</ul>
 	</div>
 	</div>

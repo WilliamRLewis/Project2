@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity		 
 @Table(name="R3_RESTAURANT")
@@ -20,25 +25,32 @@ public class RestaurantBean {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="RESTAURANT_ID")
 	private int restaurantId;
+	@Pattern(regexp="^[A-Za-z0-9 '!?@_&$#:]+$")
 	@Column(name="RESTAURANT_NAME")
 	private String restaurantName;
+	@Pattern(regexp="^[A-Za-z ]+$")
 	@Column(name="RESTAURANT_TYPE")
 	private String type;
+	@Pattern(regexp="^[A-Za-z0-9 :/()-_]+$")
 	@Column(name="RESTAURANT_ADDRESS")
 	private String address;
 	@Column(name="RESTAURANT_HOURS")
 	private String restaurantHours; //Later will be OperatingWeek
+	@Pattern(regexp="^[0-9 -]+$")
 	@Column(name="RESTAURANT_PHONE_NUMBER")
 	private int phoneNumber;
 	@Column(name="RESTAURANT_DATE_ESTABLISHED")
+	@JsonFormat(pattern = "dd:MM:yyyy")
 	private LocalDate foundingDate;
+	@Pattern(regexp="^[A-Za-z0-9 '!?@_&$#:]+$")
+	@Size(min=5, max=500)
 	@Column(name="RESTAURANT_DESCRIPTION")
 	private String description;
 	@OneToOne
 	@JoinColumn(name="USER_ID",
 	nullable=false)
 	private UserBean owner;
-	@OneToMany(mappedBy="restaurant")
+	@OneToMany(mappedBy="restaurant",fetch = FetchType.EAGER)
 	private List<ReviewBean> allReviews;
 
 	

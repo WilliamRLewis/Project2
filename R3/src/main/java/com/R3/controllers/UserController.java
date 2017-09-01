@@ -15,58 +15,59 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.R3.beans.RestaurantBean;
 import com.R3.beans.ReviewBean;
-import com.R3.daos.RestaurantDAO;
+import com.R3.beans.UserBean;
+import com.R3.daos.UserDAO;
 
 @Controller
-@RequestMapping(value="/restaurant/")
-public class RestaurantController {
+@RequestMapping(value="/user/")
+public class UserController {
 
 		@Autowired
-		private RestaurantDAO dao;
+		private UserDAO dao;
 		
-		public void setDao(RestaurantDAO dao)
+		public void setDao(UserDAO dao)
 		{
 			this.dao = dao;
 		}
-		
 		@RequestMapping(value="create", method=RequestMethod.POST,
 				consumes=MediaType.APPLICATION_JSON_VALUE)
-		@ResponseBody 
-		public ResponseEntity<RestaurantBean> create(@RequestBody RestaurantBean restaurant){ 
-							//look in request body and find RestaurantBean
-			return new ResponseEntity<RestaurantBean>(this.dao.save(restaurant), HttpStatus.OK);
+		@ResponseBody // do not redirect/forward.. rather write to response
+		public ResponseEntity<UserBean> create(@Valid @RequestBody UserBean user){ 
+							//look in request body and find UserBean
+			return new ResponseEntity<UserBean>(this.dao.save(user), HttpStatus.OK);
 		}// automagically converted JSON->object
 		
 		@RequestMapping(value="update", method=RequestMethod.PUT,
 				consumes=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
-		public ResponseEntity<RestaurantBean> update(@Valid @RequestBody RestaurantBean restaurant){
-			return new ResponseEntity<RestaurantBean>(this.dao.save(restaurant), HttpStatus.OK);
+		public ResponseEntity<UserBean> update(@Valid @RequestBody UserBean user){
+			return new ResponseEntity<UserBean>(this.dao.save(user), HttpStatus.OK);
 		}
 		
 		@RequestMapping(value="delete", method=RequestMethod.DELETE,
 				consumes=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
-		public void delete(@Valid @RequestBody RestaurantBean restaurant){
-			dao.delete(restaurant);
+		public void delete(@Valid @RequestBody UserBean user){
+			dao.delete(user);
 		}
 		
-		@SuppressWarnings("unchecked")
 		@RequestMapping(value="all", method=RequestMethod.GET,
 				produces=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
-		public ResponseEntity<List<RestaurantBean>> findAll(){
-			System.out.println("IN RESTAURANTCONTROLLER TO GET ALL RESTAURANTBEANS");
-			return new ResponseEntity<List<RestaurantBean>>(this.dao.findAllRestaurants(), HttpStatus.OK);
+		public ResponseEntity<List<UserBean>> findAll(){
+			System.out.println("IN USERCONTROLLER TO GET ALL USERBEANS");
+			return new ResponseEntity<List<UserBean>>(this.dao.findAllUsers(), HttpStatus.OK);
 		}// automagically converted object->JSON
+		
+		//You need to figure out how to send the userId with the get request!
 		@RequestMapping(value="reviews", method=RequestMethod.GET,
 				produces=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
-		public ResponseEntity<List<ReviewBean>> getReviews(@RequestHeader Integer restaurantId){
-			System.out.println("IN RESTAURANTCONTROLLER USING GETREVIEW METHOD");
-			return new ResponseEntity<List<ReviewBean>>(this.dao.getAllReviewsByRestaurantId(restaurantId), HttpStatus.OK);
+		public ResponseEntity<List<ReviewBean>> getReviews(){
+			//Call on session to get current user's reviews
+			
+			//For now it just grabs hardcoded user's reviews
+			return new ResponseEntity<List<ReviewBean>>(this.dao.getAllReviewsByUserId(72), HttpStatus.OK);
 		}
-		
 }
