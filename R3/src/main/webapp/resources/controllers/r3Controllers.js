@@ -14,7 +14,7 @@ angular.module("R3App", [ "ngRoute"]).config(
 				templateUrl : "views/userReviews.html",
 				controller  :  "myReviews",
 				controllerAs: 'controller'
-			}).when("/restaurantCreate",{
+			}).when("/createRestaurant",{
 				templateUrl : "views/createRestaurant.html",
 				controller  : "createRestaurant",
 				controllerAs: 'controller'

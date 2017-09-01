@@ -23,14 +23,15 @@ angular.module("R3App")
 		
 })
 .controller("createRestaurant", function($http, $scope, $location){
-	 $scope.createRestaurant = function (user1, pass1, role1) {
+	 $scope.createRestaurant = function (restaurantName, type, address, hours, phoneNumber, foundingDate, description) {  
 	       $http.post("restaurant/create", {
-	    	   	"restaurantName" : name,
+	    	   	"restaurantName" : restaurantName,
 	    	   	"type" : type,
 	    	   	"address" : address,
 	    	   	"restaurantHours" : hours,
-	    	   	"phoneNumber" : phone,
-	    	   	"foundingDate" : founding,//SweetbabyJesushow?
+	    	   	"phoneNumber" : phoneNumber,
+	    	   	"foundingDate" : foundingDate,//SweetbabyJesushow?
+	    	   	"description"  : description,
 	    	   	"owner" : owner //maybe do it server side?
 	        }).success(function (data) {
 	        	alert("Great success!");
