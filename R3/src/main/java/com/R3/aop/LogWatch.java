@@ -40,26 +40,5 @@ public class LogWatch {
 		log.debug("In userController doing " + joinpoint.getSignature() + " With args: " + joinpoint.getArgs());
 		
 	}
-
-//	@Around(value=getters)
-//	public Object aroundMethod(ProceedingJoinPoint joinpoint){
-//		Object returnedValue = null;
-//		System.out.println("[BEFORE] Aspect intercepted " 
-//				+ joinpoint.getSignature());
-//		System.out.println("At this location: " + joinpoint.getTarget());
-//		// before 
-//		System.out.println("Before " + joinPoint.getSignature());
-//		// call method
-//		try {
-//			returnedValue = joinPoint.proceed();
-//		} catch (Throwable e) {
-//			e.printStackTrace();
-//		}
-//		// after
-//		System.out.println("After " + joinwPoint.getSignature());
-//		//returnedValue = "BAAAAA";
-//		throw new RuntimeException();
-//		return returnedValue;
-//	}
 	
 }

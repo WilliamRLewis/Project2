@@ -27,11 +27,11 @@ public class UserBean {
 	@Column(name="USER_ID")
 	private int userId;
 	@NotNull
-	@Size(max=20)
+	@Size(min=5, max=30)
 	@Column(name="USER_USERNAME")
 	private String username;
 	@NotNull
-	@Size(max=20)
+	@Size(min=5, max=20)
 	@Column(name="USER_PASSWORD")
 	private String password;
 	@Column(name="ROLE")

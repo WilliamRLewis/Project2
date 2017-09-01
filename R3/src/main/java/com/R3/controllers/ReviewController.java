@@ -34,7 +34,7 @@ public class ReviewController {
 	@RequestMapping(value="create", method=RequestMethod.POST,
 			consumes=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody 
-	public ResponseEntity<ReviewBean> create(@RequestBody ReviewBean review){ 
+	public ResponseEntity<ReviewBean> create(@Valid @RequestBody ReviewBean review){ 
 						//look in request body and find RestaurantBean
 		return new ResponseEntity<ReviewBean>(this.dao.create(review), HttpStatus.OK);
 	}// automagically converted JSON->object

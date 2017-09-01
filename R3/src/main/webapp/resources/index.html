@@ -17,6 +17,7 @@ angular.module("R3App")
 </script>
 
 <script src="controllers/userControllers.js"></script>
+<script src="controllers/reviewControllers.js"></script>
 <script src="controllers/restaurantControllers.js"></script>
 <script src="controllers/userControllers.js"></script>
 <script src="ngmodules/angular-route.js"></script>
@@ -32,9 +33,11 @@ angular.module("R3App")
        				 <ul class="dropdown-menu">
            				<li ng-class="{ active: isActive('/login')}"><a href="#/login">Login</a></li>
 			            <li role="separator" class="divider"></li>
-			            <li><a href="#">View my Reviews</a></li>
+			            <li ng-class="{active: isActive('/userReviews')}"><a href="#/userReviews">View my Reviews</a></li>
 			            <li role="separator" class="divider"></li>
 			            <li ng-class="{ active: isActive('/createUser')}"><a href="#/createUser">Create User</a></li>
+			            <li role="separator" class="divider"></li>
+			            <li ng-class="{ active: isActive('createReview')}"><a href="#/createReview">Create Review</a></li>
          			 </ul>
        		</li>
         <li ng-class="{ active: isActive('/test')}"><a href="#/test">Submit Reimbursement Form</a></li>

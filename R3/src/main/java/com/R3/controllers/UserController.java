@@ -33,7 +33,7 @@ public class UserController {
 		@RequestMapping(value="create", method=RequestMethod.POST,
 				consumes=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody // do not redirect/forward.. rather write to response
-		public ResponseEntity<UserBean> create(@RequestBody UserBean user){ 
+		public ResponseEntity<UserBean> create(@Valid @RequestBody UserBean user){ 
 							//look in request body and find UserBean
 			return new ResponseEntity<UserBean>(this.dao.save(user), HttpStatus.OK);
 		}// automagically converted JSON->object
@@ -64,7 +64,10 @@ public class UserController {
 		@RequestMapping(value="reviews", method=RequestMethod.GET,
 				produces=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
-		public ResponseEntity<List<ReviewBean>> getReviews(@RequestHeader Integer userId){
-			return new ResponseEntity<List<ReviewBean>>(this.dao.getAllReviewsByUserId(userId), HttpStatus.OK);
+		public ResponseEntity<List<ReviewBean>> getReviews(){
+			//Call on session to get current user's reviews
+			
+			//For now it just grabs hardcoded user's reviews
+			return new ResponseEntity<List<ReviewBean>>(this.dao.getAllReviewsByUserId(72), HttpStatus.OK);
 		}
 }

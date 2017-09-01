@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity		 
 @Table(name="R3_RESTAURANT")
 public class RestaurantBean {
@@ -32,6 +34,7 @@ public class RestaurantBean {
 	@Column(name="RESTAURANT_PHONE_NUMBER")
 	private int phoneNumber;
 	@Column(name="RESTAURANT_DATE_ESTABLISHED")
+	@JsonFormat(pattern = "dd:MM:yyyy")
 	private LocalDate foundingDate;
 	@Column(name="RESTAURANT_DESCRIPTION")
 	private String description;
