@@ -20,6 +20,7 @@ angular.module("R3App")
 					alert("Failed to load reviews");
 				});
 		}
+		
 })
 .controller("createRestaurant", function($http, $scope){
 	 $scope.createRestaurant = function (user1, pass1, role1) {
