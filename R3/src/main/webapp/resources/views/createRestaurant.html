@@ -1,6 +1,53 @@
-<div>
-
-<!--   -->
-
-
-</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="text">RestaurantName</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="restaurantName" ng-model="restaurantName"
+					placeholder="Enter a username here" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="text">Type of Restaurant?</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="type"
+					ng-model="type"
+					placeholder="WWhat type of restaurant is it?" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="text">Address</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="address" ng-model="address"
+					placeholder="Enter a address here" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="text">Hours of Operation</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="hours" ng-model="hours"
+					placeholder="hours of operation" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="text">PhoneNumber</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="phoneNumber" ng-model="phoneNumber"
+					placeholder="Phone Number" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="text">Founding Date</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="foundingDate" ng-model="foundingDate"
+					placeholder="Founding date" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="text">Description</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="description" ng-model="description"
+					placeholder="Tell us about your restaurant!" required>
+			</div>
+		</div>
+				<button ng-click="createUser(restaurantName, type, address, hours, phoneNumber, foundingDate, description)" class="btn btn-primary">
+					Submit</button>
+	
