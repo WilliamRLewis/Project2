@@ -14,6 +14,7 @@
 	<!-- ASPECT -->
 	
 	<bean class="com.R3.aop.LogWatch" />
+	<bean class="com.R3.aop.UserControllerValidation"/>
 <!-- 	<bean class="com.R3.tests.aop.TestWatch" /> -->
 	<aop:aspectj-autoproxy /> <!-- @Aspect, @Before, @Pointcut -->
 

@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.NumberFormat;
@@ -24,12 +25,12 @@ public class ReviewBean {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="REVIEW_ID")
 	private int id;
-	@NotNull
-	@Min(value=0)
-	@Max(value=10)
+	@Min(0)
+	@Max(10)
 	@Column(name="REVIEW_RATING")
 	private int rating;
 	@Size(min=0, max=300)
+	@Pattern(regexp="^[A-Za-z0-9 ,.'\"!?$_]+")
 	@Column(name="REVIEW_DESCRIPTION")
 	private String description;
 	@ManyToOne

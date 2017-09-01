@@ -40,5 +40,10 @@ public class LogWatch {
 		log.debug("In userController doing " + joinpoint.getSignature() + " With args: " + joinpoint.getArgs());
 		
 	}
+	@Before(value="execution(* delete(..))")
+	public void deletingSomething(JoinPoint joinpoint){
+		log.warn("WARNING, DELETING OBJECT AT " + joinpoint.getSignature() + " With args: " + joinpoint.getArgs());
+		
+	}
 	
 }
