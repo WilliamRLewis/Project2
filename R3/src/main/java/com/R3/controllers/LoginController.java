@@ -17,26 +17,6 @@ public class LoginController {
 		return model;
 	}
 
-	@RequestMapping(value = { "/homePage"}, method = RequestMethod.GET)
-	public ModelAndView homePage() {
-		ModelAndView model = new ModelAndView();
-		model.setViewName("home");
-		return model;
-	}
-	
-	@RequestMapping(value = {"/userPage"}, method = RequestMethod.GET)
-	public ModelAndView userPage() {
-		ModelAndView model = new ModelAndView();
-		model.setViewName("home");
-		return model;
-	}
-	
-	@RequestMapping(value = {"/adminPage"}, method = RequestMethod.GET)
-	public ModelAndView adminPage() {
-		ModelAndView model = new ModelAndView();
-		model.setViewName("home");
-		return model;
-	}
 	
 	@RequestMapping(value = "/login", method = {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView loginPage(@RequestParam(value = "error",required = false) String error,

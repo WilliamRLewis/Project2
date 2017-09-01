@@ -20,19 +20,22 @@ angular.module("R3App")
 					alert("Failed to load reviews");
 				});
 		}
-	})
-.controller("createUserCtrl", function ($scope, $http, $location, createUrl) { //test controller to route user create info to usercontroller.create
-
-    $scope.authenticate = function (user, pass) {
-       $http.post(createUrl, {
-            id		:id,
-    	   	username: user,
-            password: pass,
-            role	:id
-        }).success(function (data) {
-            $location.path("/home");
-        }).error(function (error) {
-            $scope.authenticationError = error;
-        });
-    }
-});
+})
+.controller("createRestaurant", function($http, $scope){
+	 $scope.createRestaurant = function (user1, pass1, role1) {
+	       $http.post("restaurant/create", {
+	    	   	"restaurantName" : name,
+	    	   	"type" : type,
+	    	   	"address" : address,
+	    	   	"restaurantHours" : hours,
+	    	   	"phoneNumber" : phone,
+	    	   	"foundingDate" : founding,//SweetbabyJesushow?
+	    	   	"owner" : owner //maybe do it server side?
+	        }).success(function (data) {
+	        	alert("Great success!");
+	            $location.path("/home");
+	        }).error(function (error) {
+	            alert("Failed to create a new user");
+	        });
+	    }
+	});

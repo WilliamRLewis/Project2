@@ -45,6 +45,13 @@ public class UserDAO {
 		return (UserBean) sessionFactory.getCurrentSession().createCriteria(UserBean.class)
 			.add(Restrictions.eq("userId", user.getUserId()));
 	}
+	@Transactional(isolation = Isolation.READ_COMMITTED,
+			propagation = Propagation.REQUIRED,
+			rollbackFor = Exception.class)
+	public UserBean findOneById(int id){
+		return (UserBean) sessionFactory.getCurrentSession().createCriteria(UserBean.class)
+			.add(Restrictions.eq("userId", id));
+	}
 	@SuppressWarnings("unchecked")
 	@Transactional(isolation = Isolation.READ_COMMITTED,
 			propagation = Propagation.REQUIRED,

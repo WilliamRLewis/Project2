@@ -57,7 +57,6 @@ public class RestaurantController {
 		@RequestMapping(value="all", method=RequestMethod.GET,
 				produces=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
-		
 		public ResponseEntity<List<RestaurantBean>> findAll(){
 			System.out.println("IN RESTAURANTCONTROLLER TO GET ALL RESTAURANTBEANS");
 			return new ResponseEntity<List<RestaurantBean>>(this.dao.findAllRestaurants(), HttpStatus.OK);

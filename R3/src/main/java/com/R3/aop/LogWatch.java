@@ -25,7 +25,7 @@ public class LogWatch {
 	}
 	@Before(value="execution( * save(..))")
 	public void savingObject(JoinPoint joinpoint){
-		System.out.println("About to save a user!");
+		System.out.println("About to save something in: " + joinpoint.getSignature());
 	}
 	@Before(value=inControllers)
 	public void inUserController(JoinPoint joinpoint){

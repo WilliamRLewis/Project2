@@ -1,6 +1,30 @@
+<div class="form-group">
+			<label class="control-label col-sm-2" for="text">Username</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="name" ng-model="name"
+					placeholder="Enter a username here" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="text">Password</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="pass"
+					ng-model="pass"
+					placeholder="Enter a totes secure password here" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="pwd">User role: </label>
+			<div class="col-sm-10">
 
-create ME!
-
-<div ng-controller="createUserCtrl">
-<button type="button" ng-click="loadReviews()" class="btn btn-sm btn-success"></button>
-</div>
+				<div class="form-group">
+					<select class="form-control" id="role" ng-model="role">
+						<option>User</option>
+						<option>Owner</option>
+						<option>Admin</option>
+					</select>
+				</div>
+				<button ng-click="createUser(name, pass, role)" class="btn btn-primary">
+					Submit</button>
+		</div>
+	</div>

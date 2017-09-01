@@ -31,7 +31,7 @@ public class UserController {
 			this.dao = dao;
 		}
 		@RequestMapping(value="create", method=RequestMethod.POST,
-				consumes=MediaType.APPLICATION_JSON_VALUE)// Accept=application/json
+				consumes=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody // do not redirect/forward.. rather write to response
 		public ResponseEntity<UserBean> create(@RequestBody UserBean user){ 
 							//look in request body and find UserBean
