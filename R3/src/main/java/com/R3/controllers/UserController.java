@@ -66,7 +66,6 @@ public class UserController {
 		@ResponseBody
 		public ResponseEntity<List<ReviewBean>> getReviews(){
 			//Call on session to get current user's reviews
-			
 			//For now it just grabs hardcoded user's reviews
 			return new ResponseEntity<List<ReviewBean>>(this.dao.getAllReviewsByUserId(72), HttpStatus.OK);
 		}
