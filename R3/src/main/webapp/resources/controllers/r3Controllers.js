@@ -8,20 +8,28 @@ angular.module("R3App", [ "ngRoute"]).config(
 				templateUrl : "views/restaurant.html"
 			}).when("/userList", {
 				templateUrl : "views/userList.html",
-				controller : 'findUsers',
+				controller  : 'findUsers',
 			    controllerAs: 'controller'
 			}).when("/userReviews", {
 				templateUrl : "views/userReviews.html",
-				controller :  "myReviews",
+				controller  :  "myReviews",
 				controllerAs: 'controller'
 			}).when("/restaurantCreate",{
 				templateUrl : "views/createRestaurant.html",
-				controller : "createRestaurant",
-				controllerAs : 'controller'
+				controller  : "createRestaurant",
+				controllerAs: 'controller'
 			}).when("/createUser", {
 				templateUrl : "views/createNewUser.html",
-				controller : "createUserCtrl",
+				controller  : "createUserCtrl",
 				controllerAs: 'controller'
+			}).when("/createReview",{
+				templateUrl : "views/createReview.html",
+				controller  : "createReviewCtrl",
+				controllerAs: 'controller'
+			}).when("/allReviews",{
+				templateUrl : "views/reviews.html",
+				controller  : "allReviewsCtrl",
+				controllerAs: "controller"
 			}).otherwise({
 				redirectTo : "/login"
 			});

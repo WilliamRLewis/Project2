@@ -22,7 +22,7 @@ angular.module("R3App")
 		}
 		
 })
-.controller("createRestaurant", function($http, $scope){
+.controller("createRestaurant", function($http, $scope, $location){
 	 $scope.createRestaurant = function (user1, pass1, role1) {
 	       $http.post("restaurant/create", {
 	    	   	"restaurantName" : name,

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,12 +34,10 @@ public class ReviewController {
 	
 	@RequestMapping(value="create", method=RequestMethod.POST,
 			consumes=MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody 
-	public ResponseEntity<ReviewBean> create(@RequestBody ReviewBean review){ 
-						//look in request body and find RestaurantBean
-		return new ResponseEntity<ReviewBean>(this.dao.create(review), HttpStatus.OK);
-	}// automagically converted JSON->object
-	
+	@ResponseBody //BindingResult bind .hasErrors()
+	public ResponseEntity<ReviewBean> create(@Valid @RequestBody ReviewBean review){ 
+		return new ResponseEntity<ReviewBean>(this.dao.create(review), HttpStatus.CREATED);
+	}
 	@RequestMapping(value="update", method=RequestMethod.PUT,
 			consumes=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
@@ -59,5 +58,5 @@ public class ReviewController {
 	public ResponseEntity<List<ReviewBean>> findAll(){
 		System.out.println("Made it to ReviewController/findAll");
 		return new ResponseEntity<List<ReviewBean>>(this.dao.findAll(), HttpStatus.OK);
-	}// automagically converted object->JSON
+	}
 }

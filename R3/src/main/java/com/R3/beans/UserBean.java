@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 
@@ -27,11 +28,13 @@ public class UserBean {
 	@Column(name="USER_ID")
 	private int userId;
 	@NotNull
-	@Size(max=20)
+	@Size(min=5, max=30)
+	@Pattern(regexp="^[A-Za-z0-9 '!?@_]+$")
 	@Column(name="USER_USERNAME")
 	private String username;
 	@NotNull
-	@Size(max=20)
+	@Size(min=5, max=20)
+	@Pattern(regexp="^[A-Za-z0-9 ,.'\"!?$&#@_]+$")
 	@Column(name="USER_PASSWORD")
 	private String password;
 	@Column(name="ROLE")

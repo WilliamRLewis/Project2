@@ -45,10 +45,11 @@ public class ImpReviewDAO {
 		ReviewBean bean = (ReviewBean) sessionFactory.getCurrentSession().load(ReviewBean.class, pk);
 		return bean;
 	}
-	
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@SuppressWarnings("unchecked")
 	public List<ReviewBean> findAll() {
-		return sessionFactory.getCurrentSession().createCriteria(ReviewBean.class).list();
+		return (List<ReviewBean>) sessionFactory.getCurrentSession().createCriteria(ReviewBean.class).list();
 	}
 
+	
 }
