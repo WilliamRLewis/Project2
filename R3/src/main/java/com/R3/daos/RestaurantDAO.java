@@ -20,7 +20,6 @@ import javassist.bytecode.stackmap.TypeData.ClassName;
 public class RestaurantDAO {
 	
 	private SessionFactory sessionFactory;
-	private static final Logger logger = Logger.getLogger(ClassName.class.getName());
 	
 	public void setSessionFactory(SessionFactory sessionFactory){
 		this.sessionFactory=sessionFactory;
@@ -30,6 +29,7 @@ public class RestaurantDAO {
 					rollbackFor=Exception.class)
 	public RestaurantBean save(RestaurantBean restaurant){
 		sessionFactory.getCurrentSession().save(restaurant);
+		System.out.println("INSIDE RESTAURANTDAO");
 		return restaurant;
 	}
 	

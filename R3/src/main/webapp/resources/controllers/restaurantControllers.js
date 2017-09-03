@@ -22,7 +22,7 @@ angular.module("R3App")
 		}
 		
 })
-.controller("createRestaurant", function($http, $scope, $location){
+.controller("createRestaurantCtrl", function($http, $scope, $location){
 	 $scope.createRestaurant = function (restaurantName, type, address, hours, phoneNumber, foundingDate, description) {  
 	       $http.post("restaurant/create", {
 	    	   	"restaurantName" : restaurantName,
@@ -32,12 +32,12 @@ angular.module("R3App")
 	    	   	"phoneNumber" : phoneNumber,
 	    	   	"foundingDate" : foundingDate,//SweetbabyJesushow?
 	    	   	"description"  : description,
-	    	   	"owner" : owner //maybe do it server side?
+	    	   	//"owner" : owner //maybe do it server side?
 	        }).success(function (data) {
 	        	alert("Great success!");
 	            $location.path("/home");
 	        }).error(function (error) {
-	            alert("Failed to create a new user");
+	            alert("Failed to create a new restaurant");
 	        });
 	    }
 	});
