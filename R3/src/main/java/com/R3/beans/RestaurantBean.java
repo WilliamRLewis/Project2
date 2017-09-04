@@ -17,6 +17,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity		 
 @Table(name="R3_RESTAURANT")
@@ -36,11 +37,12 @@ public class RestaurantBean {
 	private String address;
 	@Column(name="RESTAURANT_HOURS")
 	private String restaurantHours; //Later will be OperatingWeek
-	@Pattern(regexp="^[0-9 -]+$")
+	//@Pattern(regexp="^[0-9 -]+$")
 	@Column(name="RESTAURANT_PHONE_NUMBER")
 	private int phoneNumber;
 	@Column(name="RESTAURANT_DATE_ESTABLISHED")
-	@JsonFormat(pattern = "dd:MM:yyyy")
+	//@JsonFormat(pattern = "YYYY-MM-DD")
+	@JsonIgnore
 	private LocalDate foundingDate;
 	@Pattern(regexp="^[A-Za-z0-9 '!?@_&$#:]+$")
 	@Size(min=5, max=500)

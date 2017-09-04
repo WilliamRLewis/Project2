@@ -1,5 +1,5 @@
 angular.module("R3App")
-.controller("findUsers", function($http, $scope, $location, $route){
+.controller("findUsers", function($http, $scope, $location, $route, reviewListService, userService){
 		$scope.data = {};
 			$http.get("user/all")
 			.success(function (data) {
@@ -9,17 +9,12 @@ angular.module("R3App")
 		         alert("Failed to load Users");
 		     });
 	
-		$scope.loadReviews = function(){
+		$scope.loadReviews = function(user){
+			//Set reviews and user service
+			reviewListService.setReviews(user.review);
+			//Might not need this later or need it only for admin functions as ideally a user would only update their own reviews.
+			userService.setUser(user);
 			$location.path("/userReviews");
-			$http.get("user/reviews" ,{
-			    headers: {'userId': userId}})
-			.success(function(data){
-				$scope.data = data;
-				$route.reload();
-			})
-			.error(function (){
-				alert("Failed to load reviews");
-			});
 	}
 		$scope.deleteUser = function(user){
 			$http({

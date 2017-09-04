@@ -22,7 +22,7 @@ container p { display: inline }
 						<td>{{ user.username }}</td>
 						<td>{{ user.password }}</td>
 						<td>{{ user.role }}</td>
-						<td><button type="button" ng-click="controller.loadReviews(user.userId)" class="btn btn-sm btn-success">
+						<td><button type="button" ng-click="loadReviews(user)" class="btn btn-sm btn-success">
 						Reviews </button></td>
 						<td><button type="button" ng-click="deleteUser(user)" class="btn btn-sm btn-danger">
 						Delete</button></td>

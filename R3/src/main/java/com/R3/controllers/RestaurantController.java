@@ -36,6 +36,7 @@ public class RestaurantController {
 		@ResponseBody 
 		public ResponseEntity<RestaurantBean> create(@RequestBody RestaurantBean restaurant){ 
 							//look in request body and find RestaurantBean
+			System.out.println(restaurant.toString() + "Found here");
 			return new ResponseEntity<RestaurantBean>(this.dao.save(restaurant), HttpStatus.OK);
 		}// automagically converted JSON->object
 		
