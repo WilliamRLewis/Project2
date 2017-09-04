@@ -42,7 +42,8 @@ public class ReviewController {
 			consumes=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<ReviewBean> update(@Valid @RequestBody ReviewBean review){
-		return new ResponseEntity<ReviewBean>(this.dao.create(review), HttpStatus.OK);
+		review.setUser(dao.getOwner(review));
+		return new ResponseEntity<ReviewBean>(this.dao.update(review), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="delete", method=RequestMethod.DELETE,

@@ -25,11 +25,11 @@ public class ReviewDAOTests {
 	
 	@Test
 	public void testCreate(){
-		UserBean owner = new UserBean(72, "Bob", "Pass", "Winner");
-		RestaurantBean aRest= new RestaurantBean(84, "Test",  "Type",  "Address",  "10", 2, LocalDate.now(), "Descript", owner);
+	//	UserBean owner = new UserBean(72, "Bob", "Pass", "Winner");
+		//RestaurantBean aRest= new RestaurantBean(84, "Test",  "Type",  "Address",  "10", 2, LocalDate.now(), "Descript", owner);
 		
-		ReviewBean aReview = new ReviewBean(1, 3, "TestReview", aRest, owner);
-		dao.create(aReview);
+		//ReviewBean aReview = new ReviewBean(1, 3, "TestReview", aRest, owner);
+	//	dao.create(aReview);
 	}
 	
 	@Test

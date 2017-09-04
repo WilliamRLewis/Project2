@@ -43,22 +43,19 @@ public class RestaurantBean {
 	private String address;
 	@Column(name="RESTAURANT_HOURS")
 	private String restaurantHours; //Later will be OperatingWeek
-	//@Pattern(regexp="^[0-9 -]+$")
-	@Pattern(regexp="^[0-9]+$")
+	@Pattern(regexp="^[0-9 -]+$")
 	@Column(name="RESTAURANT_PHONE_NUMBER")
 	private String phoneNumber;
 	@Column(name="RESTAURANT_DATE_ESTABLISHED")
-	//@JsonFormat(pattern = "dd:MM:yyyy")
-	@JsonIgnore
+	@JsonFormat(pattern = "dd:MM:yyyy")
+	//@JsonIgnore
 	private String foundingDate;
 	@Pattern(regexp="^[A-Za-z0-9 '!-?@_&$#:]+$")
 	//@Length(min=1, max=500)
 	@Column(name="RESTAURANT_DESCRIPTION")
 	private String description;
-	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name="USER_ID",nullable=true)
-	@Null
+	@JoinColumn(name="USER_ID",nullable=false)
 	private UserBean owner;
 	@JsonIgnore
 	@OneToMany(mappedBy="restaurant",fetch = FetchType.EAGER)
