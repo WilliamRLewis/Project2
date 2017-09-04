@@ -25,11 +25,11 @@ public class ReviewBean {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="REVIEW_ID")
 	private int id;
-	@Min(0)
-	@Max(10)
+	//@Min(0)
+	//@Max(10)
 	@Column(name="REVIEW_RATING")
 	private int rating;
-	@Size(min=0, max=300)
+	//@Size(min=0, max=300)
 	@Pattern(regexp="^[A-Za-z0-9 ,.'\"!?$_]+")
 	@Column(name="REVIEW_DESCRIPTION")
 	private String description;
@@ -38,7 +38,7 @@ public class ReviewBean {
 	@JsonIgnore
 	private RestaurantBean restaurant;
 	@ManyToOne
-	@JoinColumn(nullable = true, name="USER_ID")
+	@JoinColumn(nullable = false, name="USER_ID")
 	@JsonIgnore
 	private UserBean user;
 	

@@ -17,7 +17,7 @@ container p { display: inline }
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="user in data | filter:data.username" ng-model="form">
+					<tr ng-repeat="user in data | orderBy:'userId' | filter:data.username track by $index" ng-model="form">
 						<td>{{ user.userId }}</td>
 						<td>{{ user.username }}</td>
 						<td>{{ user.password }}</td>

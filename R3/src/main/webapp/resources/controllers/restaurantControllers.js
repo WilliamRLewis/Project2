@@ -22,7 +22,7 @@ angular.module("R3App")
 		}
 		
 })
-.controller("createRestaurant", function($http, $scope, $location){
+.controller("createRestaurantCtrl", function($http, $scope, $location){
 	 $scope.createRestaurant = function (restaurantName, type, address, hours, phoneNumber, foundingDate, description) {  
 		 	alert(foundingDate);
 	       $http.post("restaurant/create", {
@@ -51,7 +51,7 @@ angular.module("R3App")
 	        	alert("Great success!");
 	            $location.path("/home");
 	        }).error(function (error) {
-	            alert("Failed to create a new user");
+	            alert("Failed to create a new restaurant");
 	        });
 	    }
 	});
