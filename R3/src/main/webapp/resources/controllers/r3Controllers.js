@@ -1,7 +1,9 @@
 angular.module("R3App", [ "ngRoute"]).config(
 		function($routeProvider) {
 			$routeProvider.when("/login", {
-				templateUrl : "views/login.html"
+				templateUrl : "views/login.html",
+				controller  :  "loginCtrl",
+				controllerAs: 'controller'
 			}).when("/test", {
 				templateUrl : "views/test.html"
 			}).when("/restaurantList", {

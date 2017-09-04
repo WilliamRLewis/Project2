@@ -68,4 +68,16 @@ angular.module("R3App")
             alert("Failed to create a new user");
         });
     }
+}).controller("loginCtrl",function($scope, $http, $location){//not connected to anything
+	$scope.loginUser = function(username, password){
+		$http.post("login", {
+			"username" : username,
+			"password" : password
+		}).success(function (data) {
+        	alert("Welcome!");
+            $location.path("/home");
+        }).error(function (error) {
+            alert("NO login for you!");
+        });
+    }
 });

@@ -31,8 +31,9 @@ angular.module("R3App")
 	    	   	"restaurantHours" : hours,
 	    	   	"phoneNumber" : phoneNumber,
 	    	   	"foundingDate" : foundingDate,//SweetbabyJesushow?
-	    	   	"description"  : description,
-	    	   	//"owner" : owner //maybe do it server side?
+	    	   	"description"  : description
+	    	   	//"owner":owner
+	    	   	//"owner":"69"//{"userId":"69"}
 	        }).success(function (data) {
 	        	alert("Great success!");
 	            $location.path("/home");

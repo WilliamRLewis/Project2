@@ -1,7 +1,7 @@
+<script src="../controllers/userControllers.js"></script>
 <div>
-<form action="login", method="post">
-	Username: <input type="text" name="username" /> <br/>
-	Password: <input type="password" name="password"> <br/>
-	<input type="submit" value="login"/>	<!-- ng-click="loginCtrl" -->
-</form>
+
+	Username: <input type="text" name="username" id= "username" /> <br/>
+	Password: <input type="password" name="password"id = "password"/> <br/>
+	<button ng-click="loginCtrl(username, password" class="btn btn-primary">Submit</button>
 </div>

@@ -19,6 +19,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
+import org.junit.Ignore;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -48,16 +49,15 @@ public class RestaurantBean {
 	private String phoneNumber;
 	@Column(name="RESTAURANT_DATE_ESTABLISHED")
 	//@JsonFormat(pattern = "dd:MM:yyyy")
-	@JsonIgnore
+	//@JsonIgnore
 	private String foundingDate;
 	@Pattern(regexp="^[A-Za-z0-9 '!-?@_&$#:]+$")
-	//@Length(min=1, max=500)
+	//@Length(min=0, max=500)
 	@Column(name="RESTAURANT_DESCRIPTION")
 	private String description;
 	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name="USER_ID",nullable=true)
-	@Null
+	@JoinColumn(name="USER_ID",nullable=false)
 	private UserBean owner;
 	@JsonIgnore
 	@OneToMany(mappedBy="restaurant",fetch = FetchType.EAGER)
@@ -145,7 +145,6 @@ public class RestaurantBean {
 		this.description = description;
 	}
 
-
 	public UserBean getOwner() {
 		return owner;
 	}
@@ -154,7 +153,7 @@ public class RestaurantBean {
 	public void setOwner(UserBean owner) {
 		this.owner = owner;
 	}
-
+	
 
 	public List<ReviewBean> getAllReviews() {
 		return allReviews;
