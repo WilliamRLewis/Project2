@@ -28,7 +28,7 @@ angular.module("R3App")
 })
 .controller("updateRestaurantCtrl", function($http, $scope, $location, restaurantService){
 		$scope.data = restaurantService.getRestaurant();
-	
+		alert(restaurantService.getRestaurant().owner.username);
 		 $scope.updateRestaurant = function (restaurantName, type, address, hours, phoneNumber, foundingDate, description) {  
 			 	alert(foundingDate);
 		       $http.put("restaurant/update", {
@@ -40,14 +40,7 @@ angular.module("R3App")
 		    	   	"phoneNumber" : phoneNumber,
 		    	   	//"foundingDate" : foundingDate,
 		    	   	"description"  : description,
-		    	  	"owner" : {
-		                "userId": 72,
-		                "username": "Bob",
-		                "password": "Pass",
-		                "role": "Winner",
-		                "review": []
-		    	  		
-		    	  	} 
+		    	  	"owner" : restaurantService.getRestaurant().owner
 		        }).success(function (data) {
 		        	alert("Great success!");
 		            $location.path("/home");
