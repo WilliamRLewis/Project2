@@ -42,10 +42,9 @@ angular.module("R3App")
 		    	   	"description"  : description,
 		    	  	"owner" : restaurantService.getRestaurant().owner
 		        }).success(function (data) {
-		        	alert("Great success!");
-		            $location.path("/home");
+		            $location.path("/restaurantList");
 		        }).error(function (error) {
-		            alert("Failed to create a new restaurant");
+		            alert("Failed to update this restaurant");
 		        });
 		    }
 })
@@ -76,7 +75,7 @@ angular.module("R3App")
 	    	  	} 
 	        }).success(function (data) {
 	        	alert("Great success!");
-	            $location.path("/home");
+	            $location.path("/restaurantList");
 	        }).error(function (error) {
 	            alert("Failed to create a new restaurant");
 	        });

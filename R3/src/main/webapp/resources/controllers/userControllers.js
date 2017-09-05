@@ -36,6 +36,28 @@ angular.module("R3App")
 			});
 			
 		}
+		$scope.updateUser = function(user){
+			userService.setUser(user);
+			$location.path("/updateUser");
+	}
+})
+.controller("updateUserCtrl", function($http, $scope, $location, userService){
+	 $scope.updateUser = function (name, pass, role) {  
+	       $http.put("user/update", {
+	    	   	"userId" : userService.getUserId(),
+	    		"username" : name,
+				"password" : pass,
+				"role"	   : role,
+				"review"  : userService.getReviews()
+	    	   	
+	        }).success(function (data) {
+	            $location.path("/userList");
+	        }).error(function (error) {
+	            alert("Failed to update this user " + error);
+	        });
+	    }
+	
+	
 })
 .controller("myReviews", function($http, $scope, $location, userService){
 //	$scope.data = userService.getReviews();
