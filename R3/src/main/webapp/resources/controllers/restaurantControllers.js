@@ -1,5 +1,5 @@
 angular.module("R3App")
-.controller("findRestaurant", function($http, $scope, $location){
+.controller("findRestaurant", function($http, $scope, $location, $route,restaurantService){
 		$scope.data = {};
 			$http.get("restaurant/all").success(function (data) {
 				$scope.data = data;
@@ -20,7 +20,33 @@ angular.module("R3App")
 					alert("Failed to load reviews");
 				});
 		}
+		$scope.updateDetails = function(restaurant){
+			restaurantService.setRestaurant(restaurant);
+			$location.path("/updateRestaurant");
+			}
 		
+})
+.controller("updateRestaurantCtrl", function($http, $scope, $location, restaurantService){
+		$scope.data = restaurantService.getRestaurant();
+		alert(restaurantService.getRestaurant().owner.username);
+		 $scope.updateRestaurant = function (restaurantName, type, address, hours, phoneNumber, foundingDate, description) {  
+			 	alert(foundingDate);
+		       $http.put("restaurant/update", {
+		    	   	"restaurantId" : restaurantService.getRestaurant().restaurantId,
+		    	   	"restaurantName" : restaurantName,
+		    	   	"type" : type,
+		    	   	"address" : address,
+		    	   	"restaurantHours" : hours,
+		    	   	"phoneNumber" : phoneNumber,
+		    	   	//"foundingDate" : foundingDate,
+		    	   	"description"  : description,
+		    	  	"owner" : restaurantService.getRestaurant().owner
+		        }).success(function (data) {
+		            $location.path("/restaurantList");
+		        }).error(function (error) {
+		            alert("Failed to update this restaurant");
+		        });
+		    }
 })
 .controller("createRestaurantCtrl", function($http, $scope, $location){
 	 $scope.createRestaurant = function (restaurantName, type, address, hours, phoneNumber, foundingDate, description) {  
@@ -31,7 +57,7 @@ angular.module("R3App")
 	    	   	"address" : address,
 	    	   	"restaurantHours" : hours,
 	    	   	"phoneNumber" : phoneNumber,
-	    	  // 	"foundingDate" : foundingDate,//SweetbabyJesushow?
+	    	  // "foundingDate" : foundingDate,//SweetbabyJesushow?
 	    	   	"description"  : description,
 	    	  	"owner" : {
 	                "userId": 72,
@@ -49,7 +75,7 @@ angular.module("R3App")
 	    	  	} 
 	        }).success(function (data) {
 	        	alert("Great success!");
-	            $location.path("/home");
+	            $location.path("/restaurantList");
 	        }).error(function (error) {
 	            alert("Failed to create a new restaurant");
 	        });

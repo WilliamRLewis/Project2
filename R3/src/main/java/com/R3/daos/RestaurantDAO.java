@@ -18,70 +18,58 @@ import com.R3.beans.UserBean;
 import javassist.bytecode.stackmap.TypeData.ClassName;
 
 public class RestaurantDAO {
-	
+
 	private SessionFactory sessionFactory;
-	
-	public void setSessionFactory(SessionFactory sessionFactory){
-		this.sessionFactory=sessionFactory;
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
-	@Transactional(isolation=Isolation.READ_COMMITTED, 
-					propagation=Propagation.REQUIRED, 
-					rollbackFor=Exception.class)
-	public RestaurantBean save(RestaurantBean restaurant){
+
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public RestaurantBean save(RestaurantBean restaurant) {
 		sessionFactory.getCurrentSession().save(restaurant);
-		System.out.println("INSIDE RESTAURANTDAO");
 		return restaurant;
 	}
-	
-	@Transactional(isolation=Isolation.READ_COMMITTED,
-					propagation=Propagation.REQUIRED, 
-					rollbackFor=Exception.class)
-	public void delete(RestaurantBean restaurant){
+
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void delete(RestaurantBean restaurant) {
 		sessionFactory.getCurrentSession().delete(restaurant);
 	}
-	
+
 	@SuppressWarnings("deprecation")
-	@Transactional(isolation=Isolation.READ_COMMITTED,
-			propagation=Propagation.REQUIRED, 
-			rollbackFor=Exception.class)
-	public void deleteById(int restaurant){
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void deleteById(int restaurant) {
 		sessionFactory.getCurrentSession().delete("FROM R3_RESTAURANT WHERE RESTAURANT_ID=?");
 	}
-	
-	@Transactional(isolation=Isolation.READ_COMMITTED,
-					propagation=Propagation.REQUIRED, 
-					rollbackFor=Exception.class)
-	public void update(RestaurantBean restaurant){
-		sessionFactory.getCurrentSession().saveOrUpdate(restaurant);
+
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public RestaurantBean update(RestaurantBean restaurant) {
+		sessionFactory.getCurrentSession().update(restaurant);
+		return restaurant;
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	@Transactional(isolation=Isolation.READ_COMMITTED,
-					propagation=Propagation.REQUIRED, 
-					rollbackFor=Exception.class)
-	public List<RestaurantBean> findAllRestaurants(){
-		return (List<RestaurantBean>) sessionFactory.getCurrentSession().createCriteria(RestaurantBean.class).list(); 
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public List<RestaurantBean> findAllRestaurants() {
+		return (List<RestaurantBean>) sessionFactory.getCurrentSession().createCriteria(RestaurantBean.class).list();
 	}
-	
-	@Transactional(isolation=Isolation.READ_COMMITTED,
-					propagation=Propagation.REQUIRED, 
-					rollbackFor=Exception.class)
-	public RestaurantBean findByRestaurant(RestaurantBean restaurant){
-		
-		return (RestaurantBean) sessionFactory.getCurrentSession().createCriteria(RestaurantBean.class).add(Restrictions.eq("restaurantId", restaurant.getRestaurantId()));
+
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public RestaurantBean findByRestaurant(RestaurantBean restaurant) {
+
+		return (RestaurantBean) sessionFactory.getCurrentSession().createCriteria(RestaurantBean.class)
+				.add(Restrictions.eq("restaurantId", restaurant.getRestaurantId()));
 	}
-	@Transactional(isolation = Isolation.READ_COMMITTED,
-			propagation = Propagation.REQUIRED,
-			rollbackFor = Exception.class)
-	public List<ReviewBean> getAllReviewsByRestaurantId(Integer pk){
+
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public List<ReviewBean> getAllReviewsByRestaurantId(Integer pk) {
 		RestaurantBean bean = (RestaurantBean) sessionFactory.getCurrentSession().load(RestaurantBean.class, pk);
 		List<ReviewBean> myList = bean.getAllReviews();
 		return myList;
 	}
-	
 
 }
-//select * from all_coulmns --
-//union select null, card_number, expiration, cvv,name_on_card
-//union slect nill, owner, Table_naem, tablespace_name, null from dba_tables --
-//a' union select username, password, null, null
+// select * from all_coulmns --
+// union select null, card_number, expiration, cvv,name_on_card
+// union slect nill, owner, Table_naem, tablespace_name, null from dba_tables --
+// a' union select username, password, null, null

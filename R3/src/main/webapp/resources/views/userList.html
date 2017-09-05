@@ -13,6 +13,7 @@ container p { display: inline }
 						<th>Password</th>
 						<th>Role</th>
 						<th>Reviews</th>
+						<th>Update User</th>
 						<th>Delete User</th>
 					</tr>
 				</thead>
@@ -24,6 +25,8 @@ container p { display: inline }
 						<td>{{ user.role }}</td>
 						<td><button type="button" ng-click="loadReviews(user)" class="btn btn-sm btn-success">
 						Reviews </button></td>
+						<td><button type="button" ng-click="updateUser(user)" class="btn btn-sm btn-info">
+						Update</button></td>
 						<td><button type="button" ng-click="deleteUser(user)" class="btn btn-sm btn-danger">
 						Delete</button></td>
 					</tr>

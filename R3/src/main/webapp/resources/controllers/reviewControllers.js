@@ -49,8 +49,8 @@ angular.module("R3App")
 		alert("Failed to delete, " + error);
 	});
 	}
-	$scope.updateRev = function(id){
-		idHolderService.setId(id)
+	$scope.updateRev = function(review){
+		idHolderService.setId(review.id)
 		$location.path("/updateReview");
 	}
 	

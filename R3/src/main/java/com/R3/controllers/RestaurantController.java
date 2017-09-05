@@ -43,7 +43,7 @@ public class RestaurantController {
 				consumes=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
 		public ResponseEntity<RestaurantBean> update(@Valid @RequestBody RestaurantBean restaurant){
-			return new ResponseEntity<RestaurantBean>(this.dao.save(restaurant), HttpStatus.OK);
+			return new ResponseEntity<RestaurantBean>(this.dao.update(restaurant), HttpStatus.OK);
 		}
 		
 		@RequestMapping(value="delete", method=RequestMethod.DELETE,
