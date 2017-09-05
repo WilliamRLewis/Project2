@@ -13,18 +13,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Length;
-import org.junit.Ignore;
+import javax.validation.constraints.Pattern;
+
+
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 
 @Entity		 
 @Table(name="R3_RESTAURANT")
