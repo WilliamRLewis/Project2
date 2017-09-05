@@ -1,7 +1,9 @@
 angular.module("R3App", [ "ngRoute"]).config(
 		function($routeProvider) {
 			$routeProvider.when("/login", {
-				templateUrl : "views/login.html"
+				templateUrl : "views/login.html",
+				controller  :  "loginCtrl",
+				controllerAs: 'controller'
 			}).when("/test", {
 				templateUrl : "views/test.html"
 			}).when("/restaurantList", {
@@ -41,6 +43,10 @@ angular.module("R3App", [ "ngRoute"]).config(
 			}).when("/allReviews",{
 				templateUrl : "views/reviews.html",
 				controller  : "allReviewsCtrl",
+				controllerAs: "controller"
+			}).when("/restaurantReviews",{
+				templateUrl : "views/restReviews.html",
+				controller  : "restReviewsCtrl",
 				controllerAs: "controller"
 			}).otherwise({
 				redirectTo : "/login"
