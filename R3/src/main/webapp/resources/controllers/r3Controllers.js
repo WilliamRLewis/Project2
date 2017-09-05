@@ -30,6 +30,10 @@ angular.module("R3App", [ "ngRoute"]).config(
 				templateUrl : "views/createReview.html",
 				controller  : "updateReviewCtrl",
 				controllerAs: 'controller'
+			}).when("/updateRestaurant",{
+				templateUrl : "views/updateRestaurant.html",
+				controller : "updateRestaurantCtrl",
+				controllerAs: 'controller'		
 			}).when("/allReviews",{
 				templateUrl : "views/reviews.html",
 				controller  : "allReviewsCtrl",
