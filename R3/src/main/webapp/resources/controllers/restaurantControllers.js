@@ -20,6 +20,33 @@ angular.module("R3App")
 					alert("Failed to load reviews");
 				});
 		}
+			$scope.deleteRestaurant = function(restaurant){
+				$http({
+					url : "restaurant/delete",
+					datatype : "json",
+					method : "DELETE",
+					data : {
+					"userId"   		 :restaurant.restaurantId,
+					"restaurantName" :restaurant.restaurantName,
+					"type"			 :restaurant.type,
+					"address"	  	 :restaurant.address,
+					"restaurantHours":restaurant.restaurantHours,
+					"phoneNumber"	 :restaurant.phoneNumber,
+					"foundingDate"	 :restaurant.foundingDate,
+					"description"	 :restaurant.description,
+					"owner"			 :restaurant.owner
+					},
+					headers :{
+						"Content-Type": "application/json"
+					}
+				}).success(function(response){
+					alert("Deleted Restaurant");
+					$route.reload();
+				}).error(function(error){
+					alert("Failed to delete, " + error);
+				});
+				
+			}
 		$scope.updateDetails = function(restaurant){
 			restaurantService.setRestaurant(restaurant);
 			$location.path("/updateRestaurant");
