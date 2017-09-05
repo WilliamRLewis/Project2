@@ -28,12 +28,12 @@ public class UserBean {
 	@Column(name="USER_ID")
 	private int userId;
 	@NotNull
-	@Size(min=5, max=30)
+	@Size(min=1, max=30)
 	@Pattern(regexp="^[A-Za-z0-9 '!?@_]+$")
 	@Column(name="USER_USERNAME")
 	private String username;
 	@NotNull
-	@Size(min=5, max=20)
+	@Size(min=1, max=20)
 	@Pattern(regexp="^[A-Za-z0-9 ,.'\"!?$&#@_]+$")
 	@Column(name="USER_PASSWORD")
 	private String password;

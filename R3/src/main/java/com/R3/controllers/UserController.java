@@ -42,7 +42,7 @@ public class UserController {
 				consumes=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
 		public ResponseEntity<UserBean> update(@Valid @RequestBody UserBean user){
-			return new ResponseEntity<UserBean>(this.dao.save(user), HttpStatus.OK);
+			return new ResponseEntity<UserBean>(this.dao.update(user), HttpStatus.OK);
 		}
 		
 		@RequestMapping(value="delete", method=RequestMethod.DELETE,
@@ -66,8 +66,17 @@ public class UserController {
 		@ResponseBody
 		public ResponseEntity<List<ReviewBean>> getReviews(){
 			//Call on session to get current user's reviews
-			
 			//For now it just grabs hardcoded user's reviews
 			return new ResponseEntity<List<ReviewBean>>(this.dao.getAllReviewsByUserId(72), HttpStatus.OK);
+		}
+		@RequestMapping(value="addReview", method=RequestMethod.PUT,
+				consumes=MediaType.APPLICATION_JSON_VALUE)
+		@ResponseBody
+		public ResponseEntity<UserBean> addReview(@Valid @RequestBody ReviewBean review){
+			UserBean user = this.dao.findOneById(72);
+			List<ReviewBean> myReviews = user.getReview();
+			myReviews.add(review);
+			user.setReview(myReviews);
+			return new ResponseEntity<UserBean>(this.dao.update(user), HttpStatus.OK);
 		}
 }

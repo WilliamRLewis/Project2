@@ -17,6 +17,7 @@
 angular.module("R3App")
 </script>
 
+<script src="services/updateServices.js"></script>
 <script src="controllers/reviewControllers.js"></script>
 <script src="ngmodules/angular-route.js"></script>
 
@@ -35,7 +36,7 @@ angular.module("R3App")
 			            <li role="separator" class="divider"></li>
 			            <li ng-class="{ active: isActive('/createUser')}"><a href="#/createUser">Create User</a></li>
 			            <li role="separator" class="divider"></li>
-			            <li ng-class="{ active: isActive('createReview')}"><a href="#/createReview">Create Review</a></li>
+			            <li ng-class="{ active: isActive('/createReview')}"><a href="#/createReview">Create Review</a></li>
          			 </ul>
        		</li>
         <li ng-class="{ active: isActive('/allReviews')}"><a href="#/allReviews">View All Reviews</a></li>

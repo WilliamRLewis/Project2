@@ -14,9 +14,9 @@ angular.module("R3App", [ "ngRoute"]).config(
 				templateUrl : "views/userReviews.html",
 				controller  :  "myReviews",
 				controllerAs: 'controller'
-			}).when("/restaurantCreate",{
+			}).when("/createRestaurant",{
 				templateUrl : "views/createRestaurant.html",
-				controller  : "createRestaurant",
+				controller  : "createRestaurantCtrl",
 				controllerAs: 'controller'
 			}).when("/createUser", {
 				templateUrl : "views/createNewUser.html",
@@ -26,6 +26,18 @@ angular.module("R3App", [ "ngRoute"]).config(
 				templateUrl : "views/createReview.html",
 				controller  : "createReviewCtrl",
 				controllerAs: 'controller'
+			}).when("/updateReview",{
+				templateUrl : "views/createReview.html",
+				controller  : "updateReviewCtrl",
+				controllerAs: 'controller'
+			}).when("/updateRestaurant",{
+				templateUrl : "views/updateRestaurant.html",
+				controller : "updateRestaurantCtrl",
+				controllerAs: 'controller'	
+			}).when("/updateUser",{
+				templateUrl : "views/updateUser.html",
+				controller : "updateUserCtrl",
+				controllerAs: 'controller'	
 			}).when("/allReviews",{
 				templateUrl : "views/reviews.html",
 				controller  : "allReviewsCtrl",

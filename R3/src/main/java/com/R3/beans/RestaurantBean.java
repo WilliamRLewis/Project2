@@ -13,10 +13,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity		 
 @Table(name="R3_RESTAURANT")
@@ -38,18 +45,19 @@ public class RestaurantBean {
 	private String restaurantHours; //Later will be OperatingWeek
 	@Pattern(regexp="^[0-9 -]+$")
 	@Column(name="RESTAURANT_PHONE_NUMBER")
-	private int phoneNumber;
+	private String phoneNumber;
 	@Column(name="RESTAURANT_DATE_ESTABLISHED")
 	@JsonFormat(pattern = "dd:MM:yyyy")
-	private LocalDate foundingDate;
-	@Pattern(regexp="^[A-Za-z0-9 '!?@_&$#:]+$")
-	@Size(min=5, max=500)
+	//@JsonIgnore
+	private String foundingDate;
+	@Pattern(regexp="^[A-Za-z0-9 '!-?@_&$#:]+$")
+	//@Length(min=1, max=500)
 	@Column(name="RESTAURANT_DESCRIPTION")
 	private String description;
 	@OneToOne
-	@JoinColumn(name="USER_ID",
-	nullable=false)
+	@JoinColumn(name="USER_ID",nullable=false)
 	private UserBean owner;
+	@JsonIgnore
 	@OneToMany(mappedBy="restaurant",fetch = FetchType.EAGER)
 	private List<ReviewBean> allReviews;
 
@@ -106,22 +114,22 @@ public class RestaurantBean {
 	}
 
 
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
 
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
 
-	public LocalDate getFoundingDate() {
+	public String getFoundingDate() {
 		return foundingDate;
 	}
 
 
-	public void setFoundingDate(LocalDate foundingDate) {
+	public void setFoundingDate(String foundingDate) {
 		this.foundingDate = foundingDate;
 	}
 
@@ -157,7 +165,7 @@ public class RestaurantBean {
 
 
 	public RestaurantBean(int id, String restaurantName, String type, String address, String restaurantHours,
-			int phoneNumber, LocalDate foundingDate, String description) {
+			String phoneNumber, String foundingDate, String description) {
 		super();
 		this.restaurantId = id;
 		this.restaurantName = restaurantName;
@@ -170,7 +178,7 @@ public class RestaurantBean {
 		//this.owner = owner;
 	}
 	public RestaurantBean(int restaurantId, String restaurantName, String type, String address, String restaurantHours,
-			int phoneNumber, LocalDate foundingDate, String description, UserBean owner) {
+			String phoneNumber, String foundingDate, String description, UserBean owner) {
 		super();
 		this.restaurantId = restaurantId;
 		this.restaurantName = restaurantName;

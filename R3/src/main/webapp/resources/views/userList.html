@@ -13,16 +13,22 @@ container p { display: inline }
 						<th>Password</th>
 						<th>Role</th>
 						<th>Reviews</th>
+						<th>Update User</th>
+						<th>Delete User</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="user in data | filter:data.username" ng-model="form">
+					<tr ng-repeat="user in data  | orderBy:'userId' | filter:data.username track by $index" ng-model="form">
 						<td>{{ user.userId }}</td>
 						<td>{{ user.username }}</td>
 						<td>{{ user.password }}</td>
 						<td>{{ user.role }}</td>
-						<td><button type="button" ng-click="controller.loadReviews(user.userId)" class="btn btn-sm btn-success">
+						<td><button type="button" ng-click="loadReviews(user)" class="btn btn-sm btn-success">
 						Reviews </button></td>
+						<td><button type="button" ng-click="updateUser(user)" class="btn btn-sm btn-info">
+						Update</button></td>
+						<td><button type="button" ng-click="deleteUser(user)" class="btn btn-sm btn-danger">
+						Delete</button></td>
 					</tr>
 				</tbody>
 		</table>
