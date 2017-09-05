@@ -71,4 +71,17 @@ public class UserDAO {
 		List<ReviewBean> myList = bean.getReview();
 		return myList;
 	}
+	@Transactional(isolation = Isolation.READ_COMMITTED,
+			propagation = Propagation.REQUIRED)//,
+			//rollbackFor = Exception.class)
+	public UserBean authenticateUser(UserBean user){
+		try{
+			System.out.println("IN USERDAO LOGIN");
+		UserBean myuser = (UserBean) sessionFactory.getCurrentSession().createCriteria(UserBean.class).add(Restrictions.eq("UserBean.username",user));//.uniqueResult();
+		//UserBean myuser2 = myuser.setRole(user);
+		return myuser;
+		}catch(Exception e){
+			return null;
+		}
+	}
 }

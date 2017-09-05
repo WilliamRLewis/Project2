@@ -117,11 +117,13 @@ angular.module("R3App")
     }
 }).controller("loginCtrl",function($scope, $http, $location){//not connected to anything
 	$scope.loginUser = function(username, password){
-		$http.post("login", {
+		$http.post("login2", {
 			"username" : username,
 			"password" : password
 		}).success(function (data) {
-        	alert("Welcome!");
+        	alert("Welcome!"); 
+        	$scope.data2 = data2;
+        	alert(data2);
             $location.path("/home");
         }).error(function (error) {
             alert("NO login for you!");
