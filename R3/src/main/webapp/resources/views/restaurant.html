@@ -92,7 +92,7 @@ container p { display: inline }
 						<td>{{ restaurant.restaurantHours}}</td>
 						<td>{{ restaurant.phoneNumber}}</td>
 						<td>{{restaurant.foundingDate.dayOfMonth}}/{{restaurant.foundingDate.monthValue}}/{{restaurant.foundingDate.year}}</td>
-						<td>{{ restaurant.descrip+tion}}</td>
+						<td>{{ restaurant.description}}</td>
 						<td>{{ restaurant.owner.username}}{{restaurant.owner.review[0].description}}</td>
 						<td>{{restaurant.owner.review[0].rating}}</td>
 						<td><button type="button" ng-click="loadReviews(restaurant.restaurantId)" class="btn btn-sm btn-success">See{{restaurant.owner.review.length}}Restaurant Reviews </button></td>
