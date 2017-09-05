@@ -28,7 +28,12 @@ public class UserDAO {
 		sessionFactory.getCurrentSession().save(user);
 		return user;
 	}
-	
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public UserBean update(UserBean user) {
+		sessionFactory.getCurrentSession().update(user);
+		return user;
+
+	}
 	@Transactional(isolation = Isolation.READ_COMMITTED,
 			propagation = Propagation.REQUIRED,
 			rollbackFor = Exception.class)
@@ -36,7 +41,6 @@ public class UserDAO {
 	public void delete(UserBean user){
 		sessionFactory.getCurrentSession().delete(user);
 	}
-	
 	
 	@Transactional(isolation = Isolation.READ_COMMITTED,
 			propagation = Propagation.REQUIRED,
@@ -49,8 +53,7 @@ public class UserDAO {
 			propagation = Propagation.REQUIRED,
 			rollbackFor = Exception.class)
 	public UserBean findOneById(int id){
-		return (UserBean) sessionFactory.getCurrentSession().createCriteria(UserBean.class)
-			.add(Restrictions.eq("userId", id));
+		return (UserBean) sessionFactory.getCurrentSession().load(UserBean.class, id);
 	}
 	@SuppressWarnings("unchecked")
 	@Transactional(isolation = Isolation.READ_COMMITTED,

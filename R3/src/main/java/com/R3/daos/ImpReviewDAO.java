@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.R3.beans.ReviewBean;
+import com.R3.beans.UserBean;
 
 
 public class ImpReviewDAO {
@@ -26,8 +27,9 @@ public class ImpReviewDAO {
 
 	}
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void update(ReviewBean review) {
+	public ReviewBean update(ReviewBean review) {
 		sessionFactory.getCurrentSession().update(review);
+		return review;
 
 	}
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
@@ -49,6 +51,11 @@ public class ImpReviewDAO {
 	@SuppressWarnings("unchecked")
 	public List<ReviewBean> findAll() {
 		return (List<ReviewBean>) sessionFactory.getCurrentSession().createCriteria(ReviewBean.class).list();
+	}
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public UserBean getOwner(ReviewBean review) {
+		ReviewBean myReview = (ReviewBean) sessionFactory.getCurrentSession().load(ReviewBean.class, review.getId());
+			return myReview.getUser();
 	}
 
 	

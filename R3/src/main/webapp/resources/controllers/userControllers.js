@@ -1,7 +1,8 @@
 angular.module("R3App")
-.controller("findUsers", function($http, $scope, $location, $route){
+.controller("findUsers", function($http, $scope, $location, $route, reviewListService, userService){
 		$scope.data = {};
-			$http.get("user/all")
+		
+		$http.get("user/all")
 			.success(function (data) {
 				$scope.data = data;
 		     })
@@ -9,17 +10,9 @@ angular.module("R3App")
 		         alert("Failed to load Users");
 		     });
 	
-		$scope.loadReviews = function(){
+		$scope.loadReviews = function(user){
+			userService.setUser(user);
 			$location.path("/userReviews");
-			$http.get("user/reviews" ,{
-			    headers: {'userId': userId}})
-			.success(function(data){
-				$scope.data = data;
-				$route.reload();
-			})
-			.error(function (){
-				alert("Failed to load reviews");
-			});
 	}
 		$scope.deleteUser = function(user){
 			$http({
@@ -44,15 +37,69 @@ angular.module("R3App")
 			
 		}
 })
-.controller("myReviews", function($http, $scope){
-	$scope.data ={};
-		$http.get("user/reviews")
-		.success(function(data){
-			$scope.data = data;
-		})
-		.error(function(){
-			alert("Failed to load reviews");
+.controller("myReviews", function($http, $scope, $location, userService){
+//	$scope.data = userService.getReviews();
+//	$scope.user = userService.getUser();
+	
+	
+	$scope.updateRev = function(review){
+		$http({
+			url : "review/update",
+			dataype : "json",
+			method : "PUT",
+			data : {
+				"id" : review.id,
+				"rating" : review.rating,
+				"description" : review.description
+			},
+			headers: {
+				"Content-Type": "application/json"
+			}
+		}).success(function(response){
+			alert("Updated Review");
+			$location.path("/userList");
+		}).error(function(error){
+			alert("Failed to update Review: " + error);
 		});
+	}
+	$scope.createReview = function(rating, descript){
+		
+			$http.put("user/addReview", {
+				"rating" : rating,
+				"description" : descript
+				
+			})
+			.success(function(data){
+				alert("Form created and tied to default user");
+				
+			})
+			.error(function(error){
+				alert(error + " failed to create a new review.")
+			});
+			
+		
+		alert(" reviews" + userService.getReviews()[0] + " next " + userService.getUser().review);
+//		$http({	url : "user/update",
+//				dataype : "json",
+//				method : "PUT",
+//				data : { 
+//					"userId" : userService.getUserId(),
+//					"review" :	userService.getReviews(),
+//					"username" : userService.getUserName(),
+//					"password" :  userService.getUserPassword(),
+//					"role" : userService.getRole()
+//				},
+//				headers: {
+//					"Content-Type": "application/json"
+//				}
+//			}).success(function(response){
+//				alert("Created a review for: " + userService.getUserName());
+//				$location.path("/userList");
+//			}).error(function(error){
+//				alert("Failed to create a review Review: " + error);
+//			});
+	}
+	
 	
 })
 .controller("createUserCtrl", function ($scope, $http, $location) {
