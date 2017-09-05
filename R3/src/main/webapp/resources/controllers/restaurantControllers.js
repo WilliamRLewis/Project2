@@ -1,5 +1,5 @@
 angular.module("R3App")
-.controller("findRestaurant", function($http, $scope, $location, $route,restaurantService){
+.controller("findRestaurant", function($http, $scope, $location, $route, restaurantService){
 		$scope.data = {};
 			$http.get("restaurant/all").success(function (data) {
 				$scope.data = data;
@@ -8,13 +8,13 @@ angular.module("R3App")
 		         alert("You done Goofed!");
 		     });
 	
-			$scope.loadReviews = function(restaurantId){
-				$location.path("/restaurantReviews");
+			$scope.loadReviews = function(restaurant){
+				
 				$http.get("restaurant/reviews" ,{
-				    headers: {'restaurantId': restaurantId}})
+				    headers: {'restaurantId': restaurant.restaurantId}})
 				.success(function(data){
-					$scope.data = data;
-					$route.reload();
+					$scope.data = restaurantService.setRestaurant(data);
+					$location.path("/restaurantReviews");
 				})
 				.error(function (){
 					alert("Failed to load reviews");
@@ -26,13 +26,13 @@ angular.module("R3App")
 					datatype : "json",
 					method : "DELETE",
 					data : {
-					"userId"   		 :restaurant.restaurantId,
+					"restaurantId"   :restaurant.restaurantId,
 					"restaurantName" :restaurant.restaurantName,
 					"type"			 :restaurant.type,
 					"address"	  	 :restaurant.address,
 					"restaurantHours":restaurant.restaurantHours,
 					"phoneNumber"	 :restaurant.phoneNumber,
-					"foundingDate"	 :restaurant.foundingDate,
+					//"foundingDate"	 :restaurant.foundingDate,
 					"description"	 :restaurant.description,
 					"owner"			 :restaurant.owner
 					},
@@ -52,6 +52,10 @@ angular.module("R3App")
 			$location.path("/updateRestaurant");
 			}
 		
+})
+.controller("restReviewsCtrl", function($http, $scope, $location, restaurantService){
+	$scope.data = restaurantService.getRestaurant()
+	alert(data + " first " + data[0]);
 })
 .controller("updateRestaurantCtrl", function($http, $scope, $location, restaurantService){
 		$scope.data = restaurantService.getRestaurant();
@@ -84,7 +88,7 @@ angular.module("R3App")
 	    	   	"address" : address,
 	    	   	"restaurantHours" : hours,
 	    	   	"phoneNumber" : phoneNumber,
-	    	  // "foundingDate" : foundingDate,//SweetbabyJesushow?
+	    	  // "foundingDate" : foundingDate,
 	    	   	"description"  : description,
 	    	  	"owner" : {
 	                "userId": 72,
@@ -107,4 +111,4 @@ angular.module("R3App")
 	            alert("Failed to create a new restaurant");
 	        });
 	    }
-	});
+});

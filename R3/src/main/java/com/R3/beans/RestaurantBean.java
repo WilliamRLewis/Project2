@@ -49,7 +49,6 @@ public class RestaurantBean {
 	private String phoneNumber;
 	@Column(name="RESTAURANT_DATE_ESTABLISHED")
 	@JsonFormat(pattern = "dd:MM:yyyy")
-	//@JsonIgnore
 	private String foundingDate;
 	@Pattern(regexp="^[A-Za-z0-9 '!-?@_&$#:]+$")
 	//@Length(min=0, max=500)

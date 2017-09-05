@@ -44,6 +44,10 @@ angular.module("R3App", [ "ngRoute"]).config(
 				templateUrl : "views/reviews.html",
 				controller  : "allReviewsCtrl",
 				controllerAs: "controller"
+			}).when("/restaurantReviews",{
+				templateUrl : "views/restReviews.html",
+				controller  : "restReviewsCtrl",
+				controllerAs: "controller"
 			}).otherwise({
 				redirectTo : "/login"
 			});
